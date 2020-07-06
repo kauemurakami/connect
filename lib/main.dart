@@ -9,7 +9,7 @@ void main() {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         theme: appTheme,
-        defaultTransition: Transition.fade,
+        defaultTransition: Transition.size,
         getPages: AppPages.pages,
         home: SplashPage(),
     )

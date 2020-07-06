@@ -1,4 +1,5 @@
 import 'package:connect/app/data/repository/empresa_repository.dart';
+import 'package:connect/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
@@ -33,8 +34,9 @@ class PesquisarController extends GetxController {
       this._selectedItem != index ? selectedItem = index : null;
   void selectCategoria(index) =>
       this._selectedCategoria != index ? selectedCategoria = index : null;
-
+      
+  //add filtros etc
   pesquisar() {
-    Get.toNamed('pesquisar-prestadores');
+    Get.toNamed(Routes.PESQ_PRESTAD);
   }
 }
