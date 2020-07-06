@@ -14,6 +14,7 @@ class PesquisarScreen extends StatelessWidget {
   static final EmpresaRepository repository =
       EmpresaRepository(apiClient: ApiClient(httpClient: http.Client()));
   final PesquisarController controller = Get.put(PesquisarController(repository: repository));
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
