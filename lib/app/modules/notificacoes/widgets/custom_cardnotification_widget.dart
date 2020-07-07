@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomCardNotificacao extends Container {
   final String notificacao;
-  final String tempo;
+  final String data;
 
-  CustomCardNotificacao(this.notificacao, this.tempo);
+  CustomCardNotificacao(this.notificacao, this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class CustomCardNotificacao extends Container {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Expanded(
-            
+            flex: 2,
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
@@ -28,21 +28,28 @@ class CustomCardNotificacao extends Container {
               ))),
             ),
           ),
-          Column(
-            children: [
-              Expanded(
-                  
+          Expanded(
+            flex: 4,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  flex: 3,
                   child: Text(
                     this.notificacao,
                     style: TextStyle(fontSize: 16),
-                  )),
-              Expanded(
-                  
-                  child: Text(
-                    this.notificacao,
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
-                  )),
-            ],
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                  ),
+                ),
+                Expanded(
+                    flex: 1,
+                    child: Text(
+                      this.data,
+                      style: TextStyle(fontSize: 12, color: Colors.grey),
+                    )),
+              ],
+            ),
           ),
         ],
       ),

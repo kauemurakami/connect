@@ -1,3 +1,4 @@
+import 'package:connect/app/data/model/notificacao_model.dart';
 import 'package:connect/app/data/repository/empresa_repository.dart';
 import 'package:connect/app/routes/app_pages.dart';
 import 'package:get/get.dart';
