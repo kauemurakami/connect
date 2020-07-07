@@ -9,10 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class ServicosContratadosPage extends StatelessWidget {
+class ServicosContratadosPage extends GetView {
 //repository injection
-  final ServicoRepository repository =
+  static final ServicoRepository repository =
       ServicoRepository(apiClient: ApiClient(httpClient: http.Client()));
+
+  final ServicosContratadosController controller = Get.put(ServicosContratadosController(repository: repository));
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,7 @@ class ServicosContratadosPage extends StatelessWidget {
               )
             ],
           ),
-          GetX<ServicosContratadosController>(
-            init: ServicosContratadosController(repository: repository),
-            builder: (_) {
-              return Container(
+          Container(
                   height: 40,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -39,39 +38,30 @@ class ServicosContratadosPage extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Obx(() => CustomSmallButtonWidget(
-                              text: _.filtros[index],
+                              text: controller.filtros[index],
                               index: index,
-                              item: _.selectedItem,
-                              callback: () => _.selectItem(index),
+                              item: controller.selectedItem,
+                              callback: () => controller.selectItem(index),
                             )),
                       );
                     },
-                    itemCount: _.filtros.length,
-                  ));
-            },
+                    itemCount: controller.filtros.length,
+                  )
           ),
-          GetX<ServicosContratadosController>(
-            init: ServicosContratadosController(repository: repository),
-            builder: (_) {
-              return Flexible(
+          Flexible(
                 child: Container(
                     child: ListView.builder(
                       scrollDirection: Axis.vertical,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.all(4.0),
-                          child: Obx(() => CustomSmallButtonWidget(
-                                text: _.filtros[index],
-                                index: index,
-                                item: _.selectedItem,
-                                callback: () => _.selectItem(index),
-                              )),
+                          child: 
+                            CustomCardServicoContratadoWidget()
+                          
                         );
                       },
-                      itemCount: _.filtros.length,
+                      itemCount: Get.find<ServicosContratadosController>().servicosContratados.length,
                     )),
-              );
-            },
           ),
         ]),
       ),

@@ -15,7 +15,6 @@ class PrestadoresEncontradosController extends GetxController {
   get servicos => this._servicos.value;
   set servicos(value) => this._servicos.value = value;
  
-
   //prestadores list  
   final _prestadores = [PrestadorModel(nome: 'Kaue'), PrestadorModel(nome: 'João'), PrestadorModel(nome: 'Carlos')].obs;
   get prestadores => this._prestadores.value;

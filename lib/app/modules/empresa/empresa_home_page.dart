@@ -1,6 +1,6 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/empresa_repository.dart';
-import 'package:connect/app/modules/empresa/cadastro_servico/cadastro_servico_screen.dart';
+import 'package:connect/app/modules/empresa/cadastro_servico/servicos_screen.dart';
 import 'package:connect/app/modules/empresa/home/empresa_home_controller.dart';
 import 'package:connect/app/modules/empresa/home/home_screen.dart';
 import 'package:connect/app/modules/empresa/home/widgets/bottom_navigationbar_widget.dart';

@@ -3,7 +3,7 @@ import 'package:connect/app/data/repository/empresa_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class EmpresaRelatoriosScreen extends StatelessWidget {
+class CadastroServicoScreen extends StatelessWidget {
 //repository injection
   final EmpresaRepository repository =
       EmpresaRepository(apiClient: ApiClient(httpClient: http.Client()));
@@ -11,7 +11,12 @@ class EmpresaRelatoriosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Container(child: Text('empresa relatorios'))),
+      body: SafeArea(
+        child: Container(
+          child: Text('Cadastroservicos'),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: null, child: Icon(Icons.add, color: Colors.white,),),
     );
   }
 }
