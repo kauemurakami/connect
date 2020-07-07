@@ -1,4 +1,5 @@
 import 'package:connect/app/data/repository/empresa_repository.dart';
+import 'package:connect/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -16,5 +17,11 @@ class EmpresaController extends GetxController {
     } else {
       throw 'Aplicativo não encontrado';
     }
+  }
+  notificacoes(){
+    Get.toNamed(Routes.NOTIFICACOES);
+  }
+  chat(){
+    //Get.toNamed(Routes.MESSAGES);
   }
 }

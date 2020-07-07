@@ -1,6 +1,8 @@
+import 'package:connect/app/modules/empresa/empresa_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class CustomAppBar extends PreferredSize {
+class CustomAppBar extends PreferredSize implements GetView<EmpresaController>{
   
   final Color color;
   final String text;
@@ -9,7 +11,7 @@ class CustomAppBar extends PreferredSize {
   final Color bgColor;
 
   CustomAppBar(
-      {this.color, this.text, this.icons, this.iconsColor, this.bgColor });
+      {this.color, this.text, this.icons, this.iconsColor, this.bgColor});
   
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -32,4 +34,8 @@ class CustomAppBar extends PreferredSize {
         ), //nome empresa
         actions: this._criarIcones());
   }
+
+  @override
+  // TODO: implement controller
+  EmpresaController get controller => throw UnimplementedError();
 }

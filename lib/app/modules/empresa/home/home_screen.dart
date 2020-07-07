@@ -1,9 +1,16 @@
+import 'package:connect/app/data/provider/app_provider.dart';
+import 'package:connect/app/data/repository/empresa_repository.dart';
+import 'package:connect/app/modules/empresa/empresa_controller.dart';
 import 'package:connect/app/widgets/custom_appbar_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatelessWidget {
 //repository injection
-//final MyRepository repository = MyRepository(apiClient: MyApiClient(httpClient: http.Client()));
+static final EmpresaRepository repository = EmpresaRepository(apiClient: ApiClient(httpClient: http.Client()));
+
+  final EmpresaController controller = Get.put(EmpresaController(repository: repository));
 
   @override
   Widget build(BuildContext context) {
@@ -19,16 +26,18 @@ class HomeScreen extends StatelessWidget {
                   Icons.chat_bubble_outline,
                   color: Colors.white,
                 ),
-                onPressed: null),
+                onPressed: ()=> controller.chat()),
             IconButton(
                 icon: Icon(
                   Icons.notifications_none,
                   color: Colors.white,
                 ),
-                onPressed: null),
+                onPressed: ()=> controller.notificacoes()),
           ],
         ),
       body: Container(
+        height: 60,
+        width: 60,
         child: Text('aaaaaaaaaaaa'),
       ),
     );
