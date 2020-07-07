@@ -8,6 +8,7 @@ abstract class Routes{
 	static const CONF_PAGAMENTO = '/confirmacao-pagamento';
 	static const PAGAMENTO = '/pagamento';
 	static const SERVICOS_CADAST = '/sercivos-cadastrados';
+	static const SERVICOS_CONTRAT = '/sercivos-contratados';
   static const VALIDAR_CERTIF = '/validar-certificacoes';
 	static const AGEND_CONTATAC = '/agendar-contratacao';
 	static const EDIT_PERFIL_EMPRESA = '/editar-perfil-empresa';
