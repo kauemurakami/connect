@@ -39,8 +39,8 @@ class NotificacoesPage extends StatelessWidget {
                   itemCount: controller.notificacoes.length,
                   itemBuilder: (context, index) {
                     return CustomCardNotificacao(
-                        controller.notificacoes[index].notificacao,
-                        controller.notificacoes[index].data);
+                        controller.notificacoes[index],
+                        );
                   },
                 ),
               ),

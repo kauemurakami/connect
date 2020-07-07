@@ -39,4 +39,7 @@ class PesquisarController extends GetxController {
   pesquisar() {
     Get.toNamed(Routes.PESQ_PRESTAD);
   }
+  notificacoes(){
+    Get.toNamed(Routes.NOTIFICACOES);
+  }
 }

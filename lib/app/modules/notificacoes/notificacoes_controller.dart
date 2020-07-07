@@ -1,5 +1,6 @@
 import 'package:connect/app/data/model/notificacao_model.dart';
 import 'package:connect/app/data/repository/notificacao_repository.dart';
+import 'package:connect/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -18,4 +19,8 @@ class NotificacoesController extends GetxController {
   ].obs;
   get notificacoes => this._notificacoes.value;
   set notificacoes(value) => this._notificacoes.value = value;
+
+  notificacaoDetalhes(notificacao){
+    Get.toNamed(Routes.NOTIFICACAO, arguments: notificacao);
+  }
 }

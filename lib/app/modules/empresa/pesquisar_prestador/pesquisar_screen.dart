@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class PesquisarScreen extends StatelessWidget {
+class PesquisarScreen extends GetView {
 //repository injection
   static final EmpresaRepository repository =
       EmpresaRepository(apiClient: ApiClient(httpClient: http.Client()));
@@ -29,7 +29,7 @@ class PesquisarScreen extends StatelessWidget {
               icon: Icon(
                 Icons.notifications_none,
               ),
-              onPressed: null),
+              onPressed: ()=> controller.notificacoes()),
           IconButton(
               icon: Icon(
                 Icons.shopping_cart,
