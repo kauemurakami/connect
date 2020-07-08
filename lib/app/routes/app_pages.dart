@@ -1,12 +1,13 @@
 import 'package:connect/app/modules/add_cartao/add_cartao_page.dart';
 import 'package:connect/app/modules/cadastro/cadastro_page.dart';
 import 'package:connect/app/modules/confirmacao_pagamento/confirmacao_pagamento_page.dart';
-import 'package:connect/app/modules/empresa/detalhes_servico/detalhe_servico_page.dart';
+import 'package:connect/app/modules/empresa/add_servico/add_servico_page.dart';
 import 'package:connect/app/modules/empresa/editar_perfil/editar_perfil_page.dart';
 import 'package:connect/app/modules/empresa/empresa_home_page.dart';
 import 'package:connect/app/modules/empresa/pagamento/pagamento_controller.dart';
 import 'package:connect/app/modules/empresa/pagamento/pagamento_page.dart';
 import 'package:connect/app/modules/empresa/prestadores_encontrados/prestadores_encontrados_page.dart';
+import 'package:connect/app/modules/empresa/servico_detalhes/detalhe_servico_page.dart';
 import 'package:connect/app/modules/empresa/servicos_contratados/servicos_contratados_page.dart';
 import 'package:connect/app/modules/empresa/todos_servicos_prestador/todos_servicos_prestador_page.dart';
 import 'package:connect/app/modules/login/login_page.dart';
@@ -35,6 +36,6 @@ abstract class AppPages {
     GetPage(name: Routes.NOTIFICACAO, page:()=> NotificacaoPage()),
     GetPage(name: Routes.PAGAMENTO, page:()=> PagamentoPage()),
     GetPage(name: Routes.SERVICOS_CONTRAT, page:()=> ServicosContratadosPage()),
-    
+    GetPage(name: Routes.ADD_SERVICO, page:()=> AddServicoPage()),
   ];
 }

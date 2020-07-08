@@ -21,7 +21,7 @@ abstract class Routes{
   static const HOME_EMPRESA = '/home-empresa';
 	static const TODOS_SERV_PRESTAD = '/todos-servicos-prestador';
 	static const DETALHE_SERVIC = '/detalhe-servico';
-	
+	static const ADD_SERVICO = '/add-servico';
 
   static const HOME_PRESTADOR = '/home-prestador';
 	static const EDIT_PERFIL_PRESTADOR = '/editar-perfil-prestador';

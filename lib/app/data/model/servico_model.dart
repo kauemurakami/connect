@@ -1,5 +1,5 @@
-
 import 'package:connect/app/data/model/categoria_model.dart';
+
 
 class ServicoModel {
 
