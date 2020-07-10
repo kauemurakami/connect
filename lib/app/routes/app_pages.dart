@@ -2,9 +2,11 @@ import 'package:connect/app/modules/add_cartao/add_cartao_page.dart';
 import 'package:connect/app/modules/cadastro/cadastro_page.dart';
 import 'package:connect/app/modules/confirmacao_pagamento/confirmacao_pagamento_page.dart';
 import 'package:connect/app/modules/empresa/add_servico/add_servico_page.dart';
+import 'package:connect/app/modules/empresa/agendamento/agendamento_page.dart';
 import 'package:connect/app/modules/empresa/alterar_senha/alterar_senha_page.dart';
 import 'package:connect/app/modules/empresa/editar_perfil/editar_perfil_page.dart';
 import 'package:connect/app/modules/empresa/empresa_home_page.dart';
+import 'package:connect/app/modules/empresa/oferecer_servico/oferecer_servico_page.dart';
 import 'package:connect/app/modules/empresa/pagamento/pagamento_page.dart';
 import 'package:connect/app/modules/empresa/prestadores_encontrados/prestadores_encontrados_page.dart';
 import 'package:connect/app/modules/empresa/servico_detalhes/detalhe_servico_page.dart';
@@ -38,5 +40,7 @@ abstract class AppPages {
     GetPage(name: Routes.SERVICOS_CONTRAT, page:()=> ServicosContratadosPage()),
     GetPage(name: Routes.ADD_SERVICO, page:()=> AddServicoPage()),
     GetPage(name: Routes.ALTERAR_SENHA, page:()=> AlterarSenhaPage()),
+    GetPage(name: Routes.OFERECER_SERVICO, page:()=> OferecerServicoPage()),
+    GetPage(name: Routes.AGENDDAR_CONTATACAO, page:()=> AgendarContratacaoPage()),
   ];
 }

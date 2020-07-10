@@ -10,7 +10,7 @@ abstract class Routes{
 	static const SERVICOS_CADAST = '/sercivos-cadastrados';
 	static const SERVICOS_CONTRAT = '/sercivos-contratados';
   static const VALIDAR_CERTIF = '/validar-certificacoes';
-	static const AGEND_CONTATAC = '/agendar-contratacao';
+	static const AGENDDAR_CONTATACAO = '/agendar-contratacao';
 	static const EDIT_PERFIL_EMPRESA = '/editar-perfil-empresa';
 	static const NOTIFICACOES = '/notificacoes';
 	static const NOTIFICACAO = '/notificacao';
@@ -23,6 +23,7 @@ abstract class Routes{
 	static const TODOS_SERV_PRESTAD = '/todos-servicos-prestador';
 	static const DETALHE_SERVIC = '/detalhe-servico';
 	static const ADD_SERVICO = '/add-servico';
+	static const OFERECER_SERVICO = '/oferecer-servico';
 
   static const HOME_PRESTADOR = '/home-prestador';
 	static const EDIT_PERFIL_PRESTADOR = '/editar-perfil-prestador';

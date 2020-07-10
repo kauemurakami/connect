@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class OferecerServicoWidget extends StatelessWidget {
+class OferecerServicoPage extends StatelessWidget {
 //repository injection
 //final MyRepository repository = MyRepository(apiClient: MyApiClient(httpClient: http.Client()));
 
