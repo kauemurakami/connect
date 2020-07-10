@@ -22,3 +22,4 @@ final destaqueText = TextStyle(
   color: Color(0xff04B431),
 );
 final whiteColor = TextStyle(color: Colors.white);
+final cardVerticalText = TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white);

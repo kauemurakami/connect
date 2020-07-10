@@ -24,7 +24,7 @@ class PerfilController extends GetxController {
 
   relatorios() => Get.find<EmpresaHomeController>().screen = 2;
 
-  pagamento() => '';
+  pagamento() => Get.toNamed(Routes.PAGAMENTO);
 
   alterarSenha() => '';
 }
