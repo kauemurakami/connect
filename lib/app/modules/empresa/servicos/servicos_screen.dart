@@ -39,6 +39,7 @@ class ServicoScreen extends StatelessWidget {
                   itemCount: controller.servicos.length,
                   itemBuilder: (context, index) {
                     return CustomCardServicoWidget(
+                      callback: () => controller.servicoDetalhes(controller.servicos[index]),
                       servico: controller.servicos[index],
                     );
                   },

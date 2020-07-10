@@ -1,18 +1,15 @@
 import 'package:connect/app/data/model/servico_model.dart';
-import 'package:connect/app/modules/empresa/servicos/servicos_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-class CustomCardServicoWidget extends GestureDetector {
+class CustomCardServicoWidget extends Container {
   final ServicoModel servico;
+  final VoidCallback callback;
 
-  CustomCardServicoWidget({@required this.servico});
+  CustomCardServicoWidget({@required this.servico, this.callback});
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.find<ServicosController>().servicoDetalhes(this.servico),
-      child: Container(
+    return Container(
         height: 100,
         margin: EdgeInsets.only(left: 20, right: 20, top: 10),
         decoration: BoxDecoration(
@@ -57,9 +54,23 @@ class CustomCardServicoWidget extends GestureDetector {
                 ],
               ),
             ),
+            Expanded(
+              flex: 1,
+              child: Column(
+                children: [
+                 
+                  Expanded(
+                    flex: 1,
+                    child: IconButton(
+                        icon: Icon(Icons.remove_red_eye, size: 30, color: Colors.lightGreen,),
+                        onPressed: this.callback ?? null),
+                  )
+                ],
+              ),
+            )
           ],
         ),
-      ),
+      
     );
   }
 }

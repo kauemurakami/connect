@@ -17,6 +17,7 @@ abstract class Routes{
 	static const AVALIACAO_SERV = '/avalaiacao-servico';
 	static const PESQ_PRESTAD = '/pesquisar-prestadores';
   static const RECU_SENHA = '/recuperar-senha';
+  static const ALTERAR_SENHA = '/alterar-senha';
 	static const CAD_DEMAND = '/cadastro-e-demandas';
   static const HOME_EMPRESA = '/home-empresa';
 	static const TODOS_SERV_PRESTAD = '/todos-servicos-prestador';

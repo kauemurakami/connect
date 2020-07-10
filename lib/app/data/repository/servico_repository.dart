@@ -7,4 +7,28 @@ final ApiClient apiClient;
 
 ServicoRepository({@required this.apiClient}) : assert(apiClient != null);
 
+
+  getAllServicos(){
+
+  }
+
+  getPrestadorServicos(prestador){
+
+  }
+
+  getServico(id){
+
+  }
+
+  addservico(){
+
+  }
+
+  removeServico(){
+
+  }
+  editServico(){
+    
+  }
+
 }

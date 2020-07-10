@@ -28,7 +28,6 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   credit_card_detector: ^1.0.2
-  url_launcher: ^5.4.2
   http: ^0.12.1
   get: ^3.2.2
   meta:

@@ -60,7 +60,7 @@ class EmpresaPerfilScreen extends GetView {
                 ),
               ),
               color: Color(0xffCEECF5),
-              onPressed: controller.ligar,
+              onPressed: null,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
