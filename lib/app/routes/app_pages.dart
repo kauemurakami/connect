@@ -4,6 +4,7 @@ import 'package:connect/app/modules/confirmacao_pagamento/confirmacao_pagamento_
 import 'package:connect/app/modules/empresa/add_servico/add_servico_page.dart';
 import 'package:connect/app/modules/empresa/agendamento/agendamento_page.dart';
 import 'package:connect/app/modules/empresa/alterar_senha/alterar_senha_page.dart';
+import 'package:connect/app/modules/empresa/avaliacao_servico/avaliacao_servico_page.dart';
 import 'package:connect/app/modules/empresa/editar_perfil/editar_perfil_page.dart';
 import 'package:connect/app/modules/empresa/empresa_home_page.dart';
 import 'package:connect/app/modules/empresa/oferecer_servico/oferecer_servico_page.dart';
@@ -30,6 +31,7 @@ abstract class AppPages {
     GetPage(name: Routes.CADASTRO, page:()=> CadastroPage(),),
     GetPage(name: Routes.ADD_CARTAO, page:()=> AdicionarCartaoPage()),
     GetPage(name: Routes.CONF_PAGAMENTO, page:()=> ConfirmacaoPagamentoPage()),
+    GetPage(name: Routes.AVALIACAO_SERV, page:()=> AvaliacaoServicoPage()),
     GetPage(name: Routes.RECU_SENHA, page:()=> RecuperarSenhaPage()),
     GetPage(name: Routes.PESQ_PRESTAD, page:()=> PrestadoresEncontradosPage()),
     GetPage(name: Routes.TODOS_SERV_PRESTAD, page:()=> TodosServicosPage()),

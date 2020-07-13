@@ -1,6 +1,6 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/servico_repository.dart';
-import 'package:connect/app/modules/empresa/servico_contratado_prestado/servico_contratado_prestado_controller.dart';
+import 'package:connect/app/modules/empresa/avaliacao_servico/avaliacao_servico_controller.dart';
 import 'package:connect/app/theme/app_text_theme.dart';
 import 'package:connect/app/widgets/custom_button_widget.dart';
 import 'package:connect/app/widgets/custom_iconbuttonback_widget.dart';
@@ -8,14 +8,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class ServicoContratadoPrestadoPage extends StatelessWidget {
-  static final ServicoRepository repository =
-      ServicoRepository(apiClient: ApiClient(httpClient: http.Client()));
-  final ServicoContratadoPrestadoController controller =
-      Get.put(ServicoContratadoPrestadoController(repository: repository));
+class AvaliacaoServicoPage extends StatelessWidget {
+
+//repository injection
+static final ServicoRepository repository = ServicoRepository(apiClient: ApiClient(httpClient: http.Client()));
+final AvaliacaoServicoController controller = Get.put(AvaliacaoServicoController(repository: repository));
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         body: SingleChildScrollView(
       child: SafeArea(
@@ -43,13 +44,7 @@ class ServicoContratadoPrestadoPage extends StatelessWidget {
                     SizedBox(
                       height: MediaQuery.of(context).size.height / 15,
                     ),
-                    RichText(
-                        text: TextSpan(style: descricao, children: [
-                      TextSpan(text: 'Status atual: ', style: descricao),
-                      TextSpan(
-                          text: controller.servico.status,
-                          style: TextStyle(color: controller.statusColor()))
-                    ])),
+                    Text('Avalie este serviço'),
                     SizedBox(
                       height: 32,
                     ),
@@ -111,7 +106,7 @@ class ServicoContratadoPrestadoPage extends StatelessWidget {
                       child: CustomButtonWidget(
                         text: 'Finalizar',
                         //callback: () => Get.offNamed('prestador-home'),
-                        callback: () => controller.avaliarServico(),
+                        callback: () => controller.finalizar(),
                       ),
                     ),
                     SizedBox(
