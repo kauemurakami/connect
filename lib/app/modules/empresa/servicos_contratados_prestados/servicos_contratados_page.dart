@@ -1,7 +1,7 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/servico_repository.dart';
-import 'package:connect/app/modules/empresa/servicos_contratados/servicos_contratado_controller.dart';
-import 'package:connect/app/modules/empresa/servicos_contratados/widgets/card_servico_contratado_widget.dart';
+import 'package:connect/app/modules/empresa/servicos_contratados_prestados/servicos_contratado_controller.dart';
+import 'package:connect/app/modules/empresa/servicos_contratados_prestados/widgets/card_servico_contratado_widget.dart';
 import 'package:connect/app/theme/app_text_theme.dart';
 import 'package:connect/app/widgets/custom_iconbuttonback_widget.dart';
 import 'package:connect/app/widgets/custom_smallbutton_widget.dart';
@@ -25,7 +25,7 @@ class ServicosContratadosPage extends GetView {
             children: [
               IconButtonBackWidget(),
               Text(
-                'Serviços Contratados',
+                'Serviços Contratados', //prestados
                 style: subtitulo,
               )
             ],
@@ -56,11 +56,11 @@ class ServicosContratadosPage extends GetView {
                         return Padding(
                           padding: const EdgeInsets.all(4.0),
                           child: 
-                            CustomCardServicoContratadoWidget()
+                            CustomCardServicoContratadoWidget(servico: controller.servicosContratados[index],)
                           
                         );
                       },
-                      itemCount: Get.find<ServicosContratadosController>().servicosContratados.length,
+                      itemCount: controller.servicosContratados.length,
                     )),
           ),
         ]),

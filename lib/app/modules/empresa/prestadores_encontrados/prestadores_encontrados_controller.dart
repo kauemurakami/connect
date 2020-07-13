@@ -8,21 +8,18 @@ import 'package:meta/meta.dart';
 class PrestadoresEncontradosController extends GetxController {
 
   final PrestadorRepository repository;
-
   PrestadoresEncontradosController({@required this.repository}) : assert(repository != null);
 
-  final _servicos = [ServicoModel(nome:'Limpeza geral'), ServicoModel(nome:'Limpeza de ar condicionado'), ServicoModel(nome:'Limpeza')].obs;
-  get servicos => this._servicos.value;
-  set servicos(value) => this._servicos.value = value;
+  final servicos = [ServicoModel(nome:'Limpeza geral', id: 1, descricao: 'A mais de 10 anos na area prestando sempre o melhor servico pra você'), ServicoModel(nome:'Limpeza de ar condicionado', id: 3, descricao: 'A mais de 10 anos na area prestando sempre o melhor servico pra você'), ServicoModel(nome:'Limpeza', id: 2, descricao: 'A mais de 10 anos na area prestando sempre o melhor servico pra você')].obs;
  
   //prestadores list  
-  final _prestadores = [PrestadorModel(nome: 'Kaue'), PrestadorModel(nome: 'João'), PrestadorModel(nome: 'Carlos')].obs;
-  get prestadores => this._prestadores.value;
-  set prestadores(value) => this._prestadores.value = value;
+  final prestadores = [PrestadorModel(nome: 'Kaue'), PrestadorModel(nome: 'João'), PrestadorModel(nome: 'Carlos')].obs;
+
   
-  
-  detalhesServico(){
-    Get.toNamed(Routes.DETALHE_SERVIC);
+  final servico = ServicoModel().obs;
+
+  detalhesServico(servico){
+    Get.toNamed(Routes.DETALHE_SERVIC, arguments: servico);
   }
   verTodos(){
     Get.toNamed(Routes.TODOS_SERV_PRESTAD);

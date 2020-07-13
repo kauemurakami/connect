@@ -1,5 +1,6 @@
 import 'package:connect/app/data/model/servico_model.dart';
 import 'package:connect/app/data/repository/servico_repository.dart';
+import 'package:connect/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -27,4 +28,7 @@ class ServicosContratadosController extends GetxController {
 
   void selectItem(index) =>
       this._selectedItem != index ? selectedItem = index : null;
+
+  detalhesServicoContratatoPrestado(servico) => Get.toNamed(Routes.SERVICOS_CONTRAT_PRESTADO, arguments: servico);
+
 }

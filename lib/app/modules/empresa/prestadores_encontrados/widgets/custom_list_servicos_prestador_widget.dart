@@ -6,15 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class CustomListservicosWidget extends StatelessWidget {
+class CustomListservicosWidget extends GetView {
+
   final PrestadorRepository repository =
       PrestadorRepository(apiClient: ApiClient(httpClient: http.Client()));
-  final PrestadoresEncontradosController controller = Get.find<PrestadoresEncontradosController>();
+  
+  final PrestadoresEncontradosController controller =
+      Get.find<PrestadoresEncontradosController>();
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Obx(() => Container(
+      child: Container(
             height: 240,
             width: MediaQuery.of(context).size.width / 1.13,
             padding: EdgeInsets.only(left: 8.0),
@@ -50,19 +53,22 @@ class CustomListservicosWidget extends StatelessWidget {
                                       height: 74,
                                       width: MediaQuery.of(context).size.width,
                                       child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: <Widget>[
-                                           Container(
-                                             padding: EdgeInsets.only(top:10),
-                                             child: Text(
-                                              controller.servicos[idx].nome,
-                                              softWrap: true,
-                                              overflow: TextOverflow.ellipsis,
-                                              maxLines: 1,
+                                          Container(
+                                            padding: EdgeInsets.only(top: 10),
+                                            child:Text(
+                                                controller.servicos[idx].nome,
+                                                softWrap: true,
+                                                overflow: TextOverflow.ellipsis,
+                                                maxLines: 1,
+                                              ),
+                                            
                                           ),
-                                           ),
                                           CustomSmallButtonWidget(
-                                              callback: controller.detalhesServico,
+                                              callback: () =>
+                                                  controller.detalhesServico(controller.servicos[idx]),
                                               text: 'Ver +'),
                                         ],
                                       ),
@@ -76,7 +82,7 @@ class CustomListservicosWidget extends StatelessWidget {
                   );
                 },
                 itemCount: controller.servicos.length),
-          )),
+          ),
     );
   }
 }

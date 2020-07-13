@@ -1,17 +1,14 @@
-import 'package:connect/app/data/model/cartao_model.dart';
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/servico_repository.dart';
-import 'package:connect/app/modules/empresa/pagamento/widgets/custom_vertical_card_widget.dart';
 import 'package:connect/app/modules/empresa/servico_detalhes/detalhe_servico_controller.dart';
 import 'package:connect/app/modules/empresa/servico_detalhes/widgets/custom_card_servico_detalhe_widget.dart';
 import 'package:connect/app/theme/app_text_theme.dart';
-import 'package:connect/app/widgets/custom_button_widget.dart';
 import 'package:connect/app/widgets/custom_iconbuttonback_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class DetalhesServicoPage extends StatelessWidget {
+class DetalhesServicoPage extends GetView {
   static final ServicoRepository repository =
       ServicoRepository(apiClient: ApiClient(httpClient: http.Client()));
 
@@ -20,8 +17,7 @@ class DetalhesServicoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(controller.servico.categoria.nome);
-
+    print(controller.servico);
     return Scaffold(
       body: SingleChildScrollView(
               child: Container(

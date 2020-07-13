@@ -9,8 +9,9 @@ import 'package:connect/app/modules/empresa/empresa_home_page.dart';
 import 'package:connect/app/modules/empresa/oferecer_servico/oferecer_servico_page.dart';
 import 'package:connect/app/modules/empresa/pagamento/pagamento_page.dart';
 import 'package:connect/app/modules/empresa/prestadores_encontrados/prestadores_encontrados_page.dart';
+import 'package:connect/app/modules/empresa/servico_contratado_prestado/servico_contratado_prestado_page.dart';
 import 'package:connect/app/modules/empresa/servico_detalhes/detalhe_servico_page.dart';
-import 'package:connect/app/modules/empresa/servicos_contratados/servicos_contratados_page.dart';
+import 'package:connect/app/modules/empresa/servicos_contratados_prestados/servicos_contratados_page.dart';
 import 'package:connect/app/modules/empresa/todos_servicos_prestador/todos_servicos_prestador_page.dart';
 import 'package:connect/app/modules/login/login_page.dart';
 import 'package:connect/app/modules/notificacao/notificacao_page.dart';
@@ -42,5 +43,6 @@ abstract class AppPages {
     GetPage(name: Routes.ALTERAR_SENHA, page:()=> AlterarSenhaPage()),
     GetPage(name: Routes.OFERECER_SERVICO, page:()=> OferecerServicoPage()),
     GetPage(name: Routes.AGENDDAR_CONTATACAO, page:()=> AgendarContratacaoPage()),
+    GetPage(name: Routes.SERVICOS_CONTRAT_PRESTADO, page:()=> ServicoContratadoPrestadoPage()),
   ];
 }
