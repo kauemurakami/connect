@@ -44,7 +44,7 @@ abstract class AppPages {
     GetPage(name: Routes.ADD_SERVICO, page:()=> AddServicoPage()),
     GetPage(name: Routes.ALTERAR_SENHA, page:()=> AlterarSenhaPage()),
     GetPage(name: Routes.OFERECER_SERVICO, page:()=> OferecerServicoPage()),
-    GetPage(name: Routes.AGENDDAR_CONTATACAO, page:()=> AgendarContratacaoPage()),
+    GetPage(name: Routes.AGENDAR_CONTATACAO, page:()=> AgendarContratacaoPage()),
     GetPage(name: Routes.SERVICOS_CONTRAT_PRESTADO, page:()=> ServicoContratadoPrestadoPage()),
   ];
 }

@@ -29,7 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   credit_card_detector: ^1.0.2
   http: ^0.12.1
-  get: ^3.2.2
+  get: ^3.3.0
   meta:
   cupertino_icons: ^0.1.3
 

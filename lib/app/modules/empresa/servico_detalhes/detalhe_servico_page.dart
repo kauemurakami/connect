@@ -78,7 +78,7 @@ class DetalhesServicoPage extends GetView {
                             )),
                         RaisedButton.icon(
                             color: Colors.lightGreen,
-                            onPressed: () => controller.agendamento,
+                            onPressed: () => controller.agendamento(),
                             icon: Icon(
                               Icons.calendar_today,
                               color: Colors.white,

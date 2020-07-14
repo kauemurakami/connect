@@ -11,7 +11,7 @@ abstract class Routes{
 	static const SERVICOS_CONTRAT = '/sercivos-contratados-prestados';
 	static const SERVICOS_CONTRAT_PRESTADO = '/sercivo-contratado-prestado';
   static const VALIDAR_CERTIF = '/validar-certificacoes';
-	static const AGENDDAR_CONTATACAO = '/agendar-contratacao';
+	static const AGENDAR_CONTATACAO = '/agendar-contratacao';
 	static const EDIT_PERFIL_EMPRESA = '/editar-perfil-empresa';
 	static const NOTIFICACOES = '/notificacoes';
 	static const NOTIFICACAO = '/notificacao';
