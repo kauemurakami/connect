@@ -9,6 +9,15 @@ class ApiClient {
 final http.Client httpClient;
 ApiClient({@required this.httpClient});
 
+  cadastro(){
+
+  }
+  login(){
+
+  }
+  getCategorias(){
+    
+  }
 
 
 }

@@ -77,7 +77,7 @@ class AgendarContratacaoPage extends StatelessWidget {
                     CustomTextFormField(text: 'Cidade'),
                     CustomTextFormField(text: 'Documentação necessária'),
                     SizedBox(height: 40),
-                    CustomButtonWidget(text: 'Salvar', callback: () => controller.agendar())
+                    CustomButtonWidget(text: 'Agendar', callback: () => controller.agendar())
                   ],
                 ),
               )),

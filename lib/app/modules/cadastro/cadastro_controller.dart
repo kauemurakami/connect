@@ -22,7 +22,12 @@ class CadastroController extends GetxController {
   final _pass = ''.obs;
   get pass => this._pass.value;
   set pass(value) => this._pass.value = value;
-    
+
+  
+  final _isEmpresa = false.obs;
+  get isEmpresa => this._isEmpresa.value;
+  set isEmpresa(value) => this._isEmpresa.value = value;
+  
   onSavedPassword(value) => this.user.senha = value;
   
   onSavedEmail(value) => this.user.email = value;
@@ -49,5 +54,5 @@ class CadastroController extends GetxController {
       return 'Insira uma senha válida';
   }
 
-  
+  onChangeSwitch(value) => value == this.isEmpresa? null : this.isEmpresa = value ;
 }

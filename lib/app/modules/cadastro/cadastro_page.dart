@@ -10,10 +10,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-
-class CadastroPage extends StatelessWidget {
+class CadastroPage extends GetView<CadastroController> {
 //repository injection
-  final UserRepository repository =
+  static final UserRepository repository =
       UserRepository(apiClient: ApiClient(httpClient: http.Client()));
   static final GlobalKey _formKey = GlobalKey<FormState>();
   final TextEditingController _pass = TextEditingController();
@@ -48,7 +47,7 @@ class CadastroPage extends StatelessWidget {
                       ),
                       SizedBox(height: MediaQuery.of(context).size.height / 10),
                       GetX<CadastroController>(
-                          init: CadastroController(repository: this.repository),
+                          init: CadastroController(repository: repository),
                           builder: (_) {
                             return Form(
                               key: _formKey,
@@ -62,9 +61,11 @@ class CadastroPage extends StatelessWidget {
                                     text: 'Nome',
                                   ),
                                   CustomTextFormField(
-                                    onChanged: (value) => _.onChangeEmail(value),
+                                    onChanged: (value) =>
+                                        _.onChangeEmail(value),
                                     onSaved: (value) => _.onSavedEmail(value),
-                                    validator: (value) => _.emailValidate(value),
+                                    validator: (value) =>
+                                        _.emailValidate(value),
                                     action: TextInputAction.next,
                                     text: 'Email de usuário',
                                     sufixIcon: Icon(
@@ -79,12 +80,15 @@ class CadastroPage extends StatelessWidget {
                                     obscure: _.obscure,
                                     type: TextInputType.emailAddress,
                                     text: 'Senha',
-                                    onSaved: (value) => _.onSavedPassword(value),
-                                    validator: (value) => _.passwordValidate(value),
+                                    onSaved: (value) =>
+                                        _.onSavedPassword(value),
+                                    validator: (value) =>
+                                        _.passwordValidate(value),
                                     action: TextInputAction.next,
                                     sufixIcon: GestureDetector(
                                       onLongPress: () => _.showPassword(),
-                                      onLongPressEnd: (details) => _.showPassword(),
+                                      onLongPressEnd: (details) =>
+                                          _.showPassword(),
                                       child: Icon(
                                         Icons.remove_red_eye,
                                       ),
@@ -95,19 +99,33 @@ class CadastroPage extends StatelessWidget {
                                     obscure: _.obscure,
                                     type: TextInputType.text,
                                     text: 'Confirmar senha',
-                                    onSaved: (value) => _.onSavedPassword(value),
-                                    validator: (value) => _.passwordValidate(value),
+                                    onSaved: (value) =>
+                                        _.onSavedPassword(value),
+                                    validator: (value) =>
+                                        _.passwordValidate(value),
                                     action: TextInputAction.next,
                                     sufixIcon: GestureDetector(
                                       onLongPress: () => _.showPassword(),
-                                      onLongPressEnd: (details) => _.showPassword(),
+                                      onLongPressEnd: (details) =>
+                                          _.showPassword(),
                                       child: Icon(
                                         Icons.remove_red_eye,
                                       ),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: 48,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text('Prestador', style: TextStyle(color: controller.isEmpresa ? Colors.grey : Colors. lightGreen),),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 16, bottom: 16),
+                                        child: Switch(
+                                            value: controller.isEmpresa,
+                                            onChanged: (value) => controller.onChangeSwitch(value)),
+                                      ),
+                                      Text('Empresa', style: TextStyle(color: !controller.isEmpresa ? Colors.grey : Colors. lightGreen))
+                                    ],
                                   ),
                                   CustomButtonWidget(
                                       text: 'Cadastrar',
