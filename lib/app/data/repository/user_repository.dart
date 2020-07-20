@@ -7,12 +7,8 @@ final ApiClient apiClient;
 
 UserRepository({@required this.apiClient}) : assert(apiClient != null);
 
-  cadastro(){
-    
-  }
+  cadastro(user) => apiClient.cadastro(user);
 
-  login(){
-
-  }
+  login() => '';
 
 }

@@ -1,7 +1,7 @@
 import 'package:connect/app/theme/app_text_theme.dart';
 import 'package:flutter/material.dart';
 
-class CustomButtonWidget extends RaisedButton {
+class CustomButtonWidget extends Container {
   final String text;
   final VoidCallback callback;
   CustomButtonWidget({@required this.text, this.callback,});

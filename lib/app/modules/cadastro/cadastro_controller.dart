@@ -1,5 +1,6 @@
 import 'package:connect/app/data/model/user_model.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
+import 'package:connect/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -34,12 +35,22 @@ class CadastroController extends GetxController {
 
   onSavedName(value) => this.user.nome = value;
 
-  nameValidate(value) => value.length < 3 ? 'Insira um nome válido' : null ;
-  
-  emailValidate(value) => GetUtils.isEmail(value) ? null : 'Insira um email válido';
+  onSavedEstado(value) => this.user.estado = value;
 
+  onSavedCidade(value) => this.user.cidade = value;
+
+  onSavedEndereco(value) => this.user.endereco = value;
+
+  onSavedTelefone(value) => this.user.telefone = value;
+
+  onSavedCpfCnpj(value) => this.user.cnpjOrCpf = value ;
+
+  emailValidate(value) => GetUtils.isEmail(value) ? null : 'Insira um email válido';
+  
   onChangeEmail(value) => GetUtils.isEmail(value) ? this.isEmailCheck = true : this.isEmailCheck = false;
   
+  telefoneValidate(value) => value.length < 11 ? 'Insíra um número válido' : null;
+
   showPassword() => this.obscure ? this.obscure = false : this.obscure = true;
   
   passwordValidate(value) {
@@ -53,6 +64,24 @@ class CadastroController extends GetxController {
     } else
       return 'Insira uma senha válida';
   }
-
   onChangeSwitch(value) => value == this.isEmpresa? null : this.isEmpresa = value ;
+
+  c(){
+    print('oi');
+  }
+
+  cadastrar(){
+    this.isEmpresa ? this.user.tipo = '1' : this.user.tipo = '2';
+    repository.cadastro(this.user); 
+    print(this.user.nome);
+    print(this.user.email);
+    print(this.user.tipo);
+    print(this.user.telefone);
+    print(this.user.cnpjOrCpf);
+    print(this.user.endereco);
+    print(this.user.estado);
+    print(this.user.cidade);
+
+  } 
+
 }

@@ -1,7 +1,6 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
 import 'package:connect/app/modules/cadastro/cadastro_controller.dart';
-import 'package:connect/app/routes/app_pages.dart';
 import 'package:connect/app/theme/app_text_theme.dart';
 import 'package:connect/app/widgets/custom_button_widget.dart';
 import 'package:connect/app/widgets/custom_iconbuttonback_widget.dart';
@@ -10,13 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class CadastroPage extends GetView<CadastroController> {
+class CadastroPage extends GetView {
 //repository injection
   static final UserRepository repository =
       UserRepository(apiClient: ApiClient(httpClient: http.Client()));
-  static final GlobalKey _formKey = GlobalKey<FormState>();
-  final TextEditingController _pass = TextEditingController();
-  final TextEditingController _confirmPass = TextEditingController();
+  static final GlobalKey formKey = GlobalKey<FormState>();
+  final CadastroController controller =
+      Get.put(CadastroController(repository: repository));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,18 +44,53 @@ class CadastroPage extends GetView<CadastroController> {
                           style: descricao,
                         ),
                       ),
-                      SizedBox(height: MediaQuery.of(context).size.height / 10),
+                      Obx(
+                        () => Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Prestador',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: controller.isEmpresa
+                                      ? Colors.grey
+                                      : Colors.lightGreen),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 16, bottom: 16),
+                              child: GetX<CadastroController>(
+                                init:
+                                    CadastroController(repository: repository),
+                                initState: (_) {},
+                                builder: (_) {
+                                  return Switch(
+                                      value: controller.isEmpresa,
+                                      onChanged: (value) =>
+                                          controller.onChangeSwitch(value));
+                                },
+                              ),
+                            ),
+                            Text('Empresa',
+                                style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: !controller.isEmpresa
+                                        ? Colors.grey
+                                        : Colors.lightGreen))
+                          ],
+                        ),
+                      ),
                       GetX<CadastroController>(
                           init: CadastroController(repository: repository),
                           builder: (_) {
                             return Form(
-                              key: _formKey,
+                              key: formKey,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   CustomTextFormField(
                                     onSaved: (value) => _.onSavedName(value),
-                                    validator: (value) => _.nameValidate(value),
                                     action: TextInputAction.next,
                                     text: 'Nome',
                                   ),
@@ -68,6 +102,7 @@ class CadastroPage extends GetView<CadastroController> {
                                         _.emailValidate(value),
                                     action: TextInputAction.next,
                                     text: 'Email de usuário',
+                                    type: TextInputType.emailAddress,
                                     sufixIcon: Icon(
                                       Icons.check_circle,
                                       color: _.isEmailCheck
@@ -76,9 +111,57 @@ class CadastroPage extends GetView<CadastroController> {
                                     ),
                                   ),
                                   CustomTextFormField(
-                                    controller: _pass,
+                                    onSaved: (value) =>
+                                        _.onSavedTelefone(value),
+                                    validator: (value) =>
+                                        _.telefoneValidate(value),
+                                    action: TextInputAction.next,
+                                    max: 11,
+                                    text: 'Telefone',
+                                    type: TextInputType.number,
+                                  ),
+                                  CustomTextFormField(
+                                    onSaved: (value) => _.onSavedEstado(value),
+                                    validator: (value) => value.length > 3
+                                        ? null
+                                        : 'insira um estado válido',
+                                    action: TextInputAction.next,
+                                    type: TextInputType.text,
+                                    text: 'Estado',
+                                  ),
+                                  CustomTextFormField(
+                                    onSaved: (value) => _.onSavedCidade(value),
+                                    validator: (value) => value.length > 3
+                                        ? null
+                                        : 'insira uma cidade válida',
+                                    type: TextInputType.text,
+                                    action: TextInputAction.next,
+                                    text: 'Cidade',
+                                  ),
+                                  CustomTextFormField(
+                                    type: TextInputType.text,
+                                    onSaved: (value) =>
+                                        _.onSavedEndereco(value),
+                                    validator: (value) => value.length > 5
+                                        ? null
+                                        : 'insira um endereço válido',
+                                    action: TextInputAction.next,
+                                    text: 'Endereco',
+                                  ),
+                                  CustomTextFormField(
+                                    onSaved: (value) => _.onSavedCpfCnpj(value),
+                                    validator: (value) => value.length > 10
+                                        ? null
+                                        : 'insira um cnpn ou cpf válido',
+                                    action: TextInputAction.next,
+                                    type: TextInputType.number,
+                                    max: 14,
+                                    text: !_.isEmpresa ? 'CPF / CNPJ' : 'CNPJ',
+                                  ),
+                                  CustomTextFormField(
                                     obscure: _.obscure,
-                                    type: TextInputType.emailAddress,
+                                    max: 12,
+                                    type: TextInputType.text,
                                     text: 'Senha',
                                     onSaved: (value) =>
                                         _.onSavedPassword(value),
@@ -95,7 +178,7 @@ class CadastroPage extends GetView<CadastroController> {
                                     ),
                                   ),
                                   CustomTextFormField(
-                                    controller: _confirmPass,
+                                    max: 12,
                                     obscure: _.obscure,
                                     type: TextInputType.text,
                                     text: 'Confirmar senha',
@@ -113,37 +196,25 @@ class CadastroPage extends GetView<CadastroController> {
                                       ),
                                     ),
                                   ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text('Prestador', style: TextStyle(color: controller.isEmpresa ? Colors.grey : Colors. lightGreen),),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 16, bottom: 16),
-                                        child: Switch(
-                                            value: controller.isEmpresa,
-                                            onChanged: (value) => controller.onChangeSwitch(value)),
-                                      ),
-                                      Text('Empresa', style: TextStyle(color: !controller.isEmpresa ? Colors.grey : Colors. lightGreen))
-                                    ],
+                                  SizedBox(
+                                    height: 24,
                                   ),
+                                  CustomButtonWidget(text: 'aaaa', callback: () async => controller.c(),),
                                   CustomButtonWidget(
                                       text: 'Cadastrar',
-                                      callback: () {
+                                      callback: () async {
                                         final FormState form =
-                                            _formKey.currentState;
+                                            formKey.currentState;
                                         if (form.validate()) {
                                           form.save();
-                                          //_.cadastrar
-                                          //Get.offAllNamed('/');
+                                          //_.cadastrar();
                                         } else {
                                           //snackbar
-                                          Get.toNamed(Routes.ADD_CARTAO);
                                           print('erro ao entrar');
                                         }
                                       }),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 40.0),
+                                    padding: const EdgeInsets.only(top: 30.0),
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: GestureDetector(

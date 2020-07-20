@@ -1,5 +1,7 @@
 class UserModel {
 
+  //tipo: 1 = Empresas , 2 = Prestadores
+
   int id;
   String tipo;
   String telefone;
