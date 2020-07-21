@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView {
 //repository injection
 static final EmpresaRepository repository = EmpresaRepository(apiClient: ApiClient(httpClient: http.Client()));
 
@@ -18,7 +18,7 @@ static final EmpresaRepository repository = EmpresaRepository(apiClient: ApiClie
       appBar: CustomAppBar(
           bgColor: Colors.green,
           color: Colors.white,
-          text: 'Usina Oliveira',
+          text: controller.user.nome,
           iconsColor: Colors.white,
           icons: <Widget>[
             IconButton(

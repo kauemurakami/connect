@@ -39,11 +39,12 @@ class EmpresaPerfilScreen extends GetView {
             ),
             SizedBox(height: 20),
             Text(
-              'Empresa nome',
+              controller.user.nome,
               style: titulo,
             ),
             SizedBox(height: 20),
             RaisedButton(
+              
               child: Container(
                 width: 140,
                 child: Row(
@@ -55,12 +56,12 @@ class EmpresaPerfilScreen extends GetView {
                     SizedBox(
                       width: 10,
                     ),
-                    Text('(16)999999999'),
+                    Text(controller.user.telefone),
                   ],
                 ),
               ),
               color: Color(0xffCEECF5),
-              onPressed: null,
+              onPressed: (){},
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),

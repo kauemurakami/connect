@@ -1,5 +1,6 @@
 import 'package:connect/app/data/model/empresa_model.dart';
 import 'package:connect/app/data/repository/empresa_repository.dart';
+import 'package:connect/app/modules/empresa/empresa_controller.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -19,6 +20,7 @@ class EditarPerfilController extends GetxController {
   final _user = EmpresaModel().obs;
   get user => this._user.value;
   set user(value) => this._user.value = value;
+
 
   salvarAlteracoes(){
     

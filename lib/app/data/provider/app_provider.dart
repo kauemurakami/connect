@@ -30,9 +30,14 @@ ApiClient({@required this.httpClient});
       var response = await httpClient.post('$baseUrl/login.php', body: jsonEncode({'email':user.email, 'senha':user.senha }));
       if(response.statusCode == 200){
         print('logado com sucesso');
-        print(response.body);
         Map<String, dynamic> jsonResponse = json.decode(response.body);
         UserModel userModel = UserModel();
+        userModel.id = jsonResponse['usuario']['idUsuario'];
+        userModel.cidade = jsonResponse['usuario']['cidade'];
+        userModel.estado = jsonResponse['usuario']['estado'];
+        userModel.cnpjOrCpf = jsonResponse['usuario']['cnpj_or_cpf'];
+        userModel.endereco = jsonResponse['usuario']['endereco'];
+        userModel.telefone = jsonResponse['usuario']['telefone'];
         userModel.tipo = jsonResponse['usuario']['tipoLogin'];
         userModel.statusPagamento = jsonResponse['usuario']['mensalidade'] == 'false' ? false : true ;
         userModel.nome = jsonResponse['usuario']['nome'];

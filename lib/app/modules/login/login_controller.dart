@@ -23,9 +23,10 @@ class LoginController extends GetxController {
 
   //verificar se é usuário comum ou admin
   login() {
-    repository.login(this.user).then((data)=> this.user = data);
-    this.user.statusPagamento == false ? Get.toNamed(Routes.ADD_CARTAO) : null ;
-    this.user.tipo == '2' ? Get.offAllNamed(Routes.HOME_EMPRESA) : Get.offAllNamed(Routes.HOME_PRESTADOR) ;
+    repository.login(this.user).then((data){
+      this.user = data;
+      if(this.user.tipo == '2') Get.offAllNamed(Routes.HOME_EMPRESA, arguments: this.user);
+    }); 
   }
 
   //onChanged

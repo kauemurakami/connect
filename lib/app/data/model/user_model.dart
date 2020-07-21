@@ -2,7 +2,7 @@ class UserModel {
 
   //tipo: 1 = Empresas , 2 = Prestadores
 
-  int id;
+  String id;
   String tipo;
   String telefone;
   String cnpjOrCpf;
@@ -45,7 +45,7 @@ class UserModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    data['idUsuario'] = this.id;
     data['tipoLogin'] = this.tipo;
     data['telefone'] = this.telefone;
     data['cnpj_or_cpf'] = this.cnpjOrCpf;
