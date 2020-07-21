@@ -87,7 +87,9 @@ class CadastroPage extends GetView {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             CustomTextFormField(
+                              onChanged: (value) => controller.onChangeName(value),
                               onSaved: (value) => controller.onSavedName(value),
+                              validator: (value) => controller.onValidateName(value),
                               action: TextInputAction.next,
                               text: 'Nome',
                             ),
@@ -111,6 +113,7 @@ class CadastroPage extends GetView {
                               ),
                             ),
                             CustomTextFormField(
+                              onChanged: (value) => controller.onChangeTelefone(value),
                               onSaved: (value) =>
                                   controller.onSavedTelefone(value),
                               validator: (value) =>
@@ -121,6 +124,7 @@ class CadastroPage extends GetView {
                               type: TextInputType.number,
                             ),
                             CustomTextFormField(
+                              onChanged: (value) => controller.onChangeEstado(value),
                               onSaved: (value) =>
                                   controller.onSavedEstado(value),
                               validator: (value) => value.length > 3
@@ -131,6 +135,7 @@ class CadastroPage extends GetView {
                               text: 'Estado',
                             ),
                             CustomTextFormField(
+                              onChanged: (value) => controller.onChangeCidade(value),
                               onSaved: (value) =>
                                   controller.onSavedCidade(value),
                               validator: (value) => value.length > 3
@@ -141,6 +146,7 @@ class CadastroPage extends GetView {
                               text: 'Cidade',
                             ),
                             CustomTextFormField(
+                              onChanged: (value) => controller.onChangeEndereco(value),
                               type: TextInputType.text,
                               onSaved: (value) =>
                                   controller.onSavedEndereco(value),
@@ -151,6 +157,7 @@ class CadastroPage extends GetView {
                               text: 'Endereco',
                             ),
                             CustomTextFormField(
+                              onChanged: (value) => controller.onChangeCpfOrCnpj(value),
                               onSaved: (value) =>
                                   controller.onSavedCpfCnpj(value),
                               validator: (value) => value.length > 10
@@ -167,6 +174,7 @@ class CadastroPage extends GetView {
                               max: 12,
                               type: TextInputType.text,
                               text: 'Senha',
+                              onChanged: (value) => controller.onChangeSenha(value),
                               onSaved: (value) =>
                                   controller.onSavedPassword(value),
                               validator: (value) =>
@@ -182,6 +190,7 @@ class CadastroPage extends GetView {
                               ),
                             ),
                             CustomTextFormField(
+                              onChanged: (value) => controller.onChangeSenha(value),
                               max: 12,
                               obscure: controller.obscure,
                               type: TextInputType.text,
@@ -203,13 +212,10 @@ class CadastroPage extends GetView {
                             SizedBox(
                               height: 24,
                             ),
-                            CustomButtonWidget(
-                              text: 'aaaa',
-                              callback: () async => controller.c(),
-                            ),
+                            
                             CustomButtonWidget(
                                 text: 'Cadastrar',
-                                callback: () async {
+                                callback: () {
                                   final FormState form = formKey.currentState;
                                   if (form.validate()) {
                                     form.save();

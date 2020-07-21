@@ -12,9 +12,11 @@ class UserModel {
   String senha;
   String endereco;
   String estado;
+  bool statusPagamento;
 
   UserModel(
-      {this.id,
+      {
+      this.id,
       this.nome,
       this.email,
       this.senha,
@@ -23,12 +25,13 @@ class UserModel {
       this.endereco,
       this.estado,
       this.telefone,
-      this.tipo
+      this.tipo,
+      this.statusPagamento = false
       });
 
   UserModel.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
-    this.tipo = json['tipo'];
+    this.tipo = json['tipoLogin'];
     this.telefone = json['telefone'];
     this.cnpjOrCpf = json['cnpj_or_cpf'];
     this.nome = json['nome_empresa'];
@@ -37,12 +40,13 @@ class UserModel {
     this.endereco = json['endereco'];
     this.email = json['email'];
     this.senha = json['senha'];
+    this.statusPagamento = json['mensalidade'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    data['tipo'] = this.tipo;
+    data['tipoLogin'] = this.tipo;
     data['telefone'] = this.telefone;
     data['cnpj_or_cpf'] = this.cnpjOrCpf;
     data['nome_empresa'] = this.nome;
@@ -51,6 +55,7 @@ class UserModel {
     data['endereco'] = this.endereco;
     data['email'] = this.email;
     data['senha'] = this.senha;
+    data['mensalidade'] = this.statusPagamento;
     return data;
   }
 }

@@ -45,8 +45,24 @@ class CadastroController extends GetxController {
 
   onSavedCpfCnpj(value) => this.user.cnpjOrCpf = value ;
 
+  onChangeName(value) => this.user.nome = value;
+
+  onChangeCidade(value) => this.user.cidade = value;
+
+  onChangeEstado(value) => this.user.estado = value;
+
+  onChangeEndereco(value) => this.user.endereco = value;
+
+  onChangeTelefone(value) => this.user.telefone = value;
+
+  onChangeCpfOrCnpj(value) => this.user.cnpjOrCpf = value;
+
+  onChangeSenha(value) => this.user.senha = value;
+
   emailValidate(value) => GetUtils.isEmail(value) ? null : 'Insira um email válido';
   
+  onValidateName(value) => value.length < 3 ? 'Insira um nome válido' : null;
+
   onChangeEmail(value) => GetUtils.isEmail(value) ? this.isEmailCheck = true : this.isEmailCheck = false;
   
   telefoneValidate(value) => value.length < 11 ? 'Insíra um número válido' : null;
@@ -71,8 +87,10 @@ class CadastroController extends GetxController {
   }
 
   cadastrar(){
+    print('cadastrar controller');
     this.isEmpresa ? this.user.tipo = '1' : this.user.tipo = '2';
     repository.cadastro(this.user); 
+    
     print(this.user.nome);
     print(this.user.email);
     print(this.user.tipo);
@@ -81,6 +99,8 @@ class CadastroController extends GetxController {
     print(this.user.endereco);
     print(this.user.estado);
     print(this.user.cidade);
+
+    Get.toNamed(Routes.ADD_CARTAO);
 
   } 
 

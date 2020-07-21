@@ -1,5 +1,6 @@
 import 'package:connect/app/data/model/user_model.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
+import 'package:connect/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
@@ -22,19 +23,9 @@ class LoginController extends GetxController {
 
   //verificar se é usuário comum ou admin
   login() {
-      //this.user;
-      //verificar tipo usuario
-      /*
-      if(this.user.id == empresa........)
-      if(this.user.id == prestador........)
-      */
-      //Get.offAllNamed('/');
-
-      print('login');
-
-      //snackbar
-      print('erro ao salvar');
-
+    repository.login(this.user).then((data)=> this.user = data);
+    this.user.statusPagamento == false ? Get.toNamed(Routes.ADD_CARTAO) : null ;
+    this.user.tipo == '2' ? Get.offAllNamed(Routes.HOME_EMPRESA) : Get.offAllNamed(Routes.HOME_PRESTADOR) ;
   }
 
   //onChanged
@@ -58,7 +49,7 @@ class LoginController extends GetxController {
       return 'Insira um email válido';
   }
 
-  passwordValidate(value) => value.length < 5 ? null : 'Insira uma senha válida';
+  passwordValidate(value) => value.length < 5 ? 'Insira uma senha válida' : null ;
 
   showPassword() {
     if (this.obscure) {

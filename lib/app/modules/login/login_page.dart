@@ -68,6 +68,7 @@ class LoginPage extends StatelessWidget {
                               obscure: _.obscure,
                               type: TextInputType.text,
                               text: 'Senha',
+                              onChanged: (value) => _.user.senha = value,
                               onSaved: (value) => _.onSavedPassword(value),
                               validator: (value) => _.passwordValidate(value),
                               action: TextInputAction.next,
@@ -99,8 +100,7 @@ class LoginPage extends StatelessWidget {
                                   final FormState form = _formKey.currentState;
                                   if (form.validate()) {
                                     form.save();
-                                    //_.login();
-                                    Get.offAllNamed(Routes.INITIAL);
+                                    _.login();
                                   } else {
                                     //snackbar
                                     print('erro ao entrar');

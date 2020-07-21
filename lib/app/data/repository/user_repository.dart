@@ -9,6 +9,6 @@ UserRepository({@required this.apiClient}) : assert(apiClient != null);
 
   cadastro(user) => apiClient.cadastro(user);
 
-  login() => '';
+  login(user) => apiClient.login(user);
 
 }
