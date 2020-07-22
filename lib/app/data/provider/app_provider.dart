@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 const baseUrl = 'https://deze6.com.br/apiConnect';
-
+final token = 'DOPAInbdsc12fdskp$*&';
 class ApiClient {
 
 final http.Client httpClient;
@@ -48,8 +48,10 @@ ApiClient({@required this.httpClient});
     }finally{}
   }
 
-  getCategorias(){
-    
+  getCategorias() async {
+    try{
+      var response = await httpClient.post('$baseUrl/categorias.php', body: ({'token':''}));
+    }finally{}
   }
 
   getCategorias(){
