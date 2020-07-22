@@ -1,20 +1,39 @@
+import 'package:connect/app/data/model/cidade_model.dart';
+import 'package:connect/app/data/model/estado_model.dart';
 import 'package:connect/app/data/model/user_model.dart';
+import 'package:connect/app/data/provider/localidades_provider.dart';
+import 'package:connect/app/data/repository/localidades_repository.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
 import 'package:connect/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
 
 class CadastroController extends GetxController {
   final UserRepository repository;
   CadastroController({@required this.repository}) : assert(repository != null);
+  
+  final LocalidadesRepository localRepository = LocalidadesRepository(apiClient: LocalidadesApiClient(httpClient: http.Client()));
 
   final _user = UserModel().obs;
   get user => this._user.value;
   set user(value) => this._user.value = value;
 
+  final _selectedEstado = Estado().obs;
+  get selectedEstado => this._selectedEstado.value;
+  set selectedEstado(value) => this._selectedEstado.value = value;  
+
+  final _selectedCidade = Cidade().obs;
+  get selectedCidade => this._selectedCidade.value;
+  set selectedCidade(value) => this._selectedCidade.value = value;
+
   final _isEmailCheck = false.obs;
   get isEmailCheck => this._isEmailCheck.value;
   set isEmailCheck(value) => this._isEmailCheck.value = value;
+  
+  final _cidades = List<Cidade>().obs;
+  get cidades => this._cidades.value;
+  set cidades(value) => this._cidades.value = value;
 
   final _obscure = true.obs;
   get obscure => this._obscure.value;
@@ -23,8 +42,12 @@ class CadastroController extends GetxController {
   final _pass = ''.obs;
   get pass => this._pass.value;
   set pass(value) => this._pass.value = value;
-
   
+  
+  final _estados = List<Estado>().obs;
+  get estados => this._estados.value;
+  set estados(value) => this._estados.value = value;
+
   final _isEmpresa = false.obs;
   get isEmpresa => this._isEmpresa.value;
   set isEmpresa(value) => this._isEmpresa.value = value;
@@ -82,13 +105,34 @@ class CadastroController extends GetxController {
   }
   onChangeSwitch(value) => value == this.isEmpresa? null : this.isEmpresa = value ;
 
-  c(){
-    print('oi');
+  onChangeEstados(value){
+    if(this.selectedEstado.nome != value) this.selectedEstado = value ;
+    getCidades();
+  } 
+
+  selectCidade(item) => this.selectedCidade = item;
+
+  onInit(){
+    getEstados();
+    super.onInit();
+  }
+
+  getEstados(){
+    localRepository.getEstados().then((data) {
+      this.estados = data; 
+      this.selectedEstado = this.estados[0];
+    });
+  }
+
+  getCidades(){
+    localRepository.getCidades(this.selectedEstado).then((data) => this.cidades = data);
   }
 
   cadastrar(){
     print('cadastrar controller');
     this.isEmpresa ? this.user.tipo = '1' : this.user.tipo = '2';
+    this.user.estado = this.selectedEstado.nome;
+    this.user.cidade = this.selectedCidade.nome;
     repository.cadastro(this.user); 
     
     print(this.user.nome);

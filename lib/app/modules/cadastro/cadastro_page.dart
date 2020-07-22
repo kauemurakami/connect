@@ -1,6 +1,8 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
 import 'package:connect/app/modules/cadastro/cadastro_controller.dart';
+import 'package:connect/app/modules/cadastro/widgets/custom_drop_down_estados.dart';
+import 'package:connect/app/modules/cadastro/widgets/custom_text_field_cidades_widget.dart';
 import 'package:connect/app/theme/app_text_theme.dart';
 import 'package:connect/app/widgets/custom_button_widget.dart';
 import 'package:connect/app/widgets/custom_iconbuttonback_widget.dart';
@@ -87,9 +89,11 @@ class CadastroPage extends GetView {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             CustomTextFormField(
-                              onChanged: (value) => controller.onChangeName(value),
+                              onChanged: (value) =>
+                                  controller.onChangeName(value),
                               onSaved: (value) => controller.onSavedName(value),
-                              validator: (value) => controller.onValidateName(value),
+                              validator: (value) =>
+                                  controller.onValidateName(value),
                               action: TextInputAction.next,
                               text: 'Nome',
                             ),
@@ -113,7 +117,8 @@ class CadastroPage extends GetView {
                               ),
                             ),
                             CustomTextFormField(
-                              onChanged: (value) => controller.onChangeTelefone(value),
+                              onChanged: (value) =>
+                                  controller.onChangeTelefone(value),
                               onSaved: (value) =>
                                   controller.onSavedTelefone(value),
                               validator: (value) =>
@@ -123,30 +128,11 @@ class CadastroPage extends GetView {
                               text: 'Telefone',
                               type: TextInputType.number,
                             ),
+                            CustomDropDownEstados(),
+                            CustomTFFCidadesPage(),
                             CustomTextFormField(
-                              onChanged: (value) => controller.onChangeEstado(value),
-                              onSaved: (value) =>
-                                  controller.onSavedEstado(value),
-                              validator: (value) => value.length > 3
-                                  ? null
-                                  : 'insira um estado válido',
-                              action: TextInputAction.next,
-                              type: TextInputType.text,
-                              text: 'Estado',
-                            ),
-                            CustomTextFormField(
-                              onChanged: (value) => controller.onChangeCidade(value),
-                              onSaved: (value) =>
-                                  controller.onSavedCidade(value),
-                              validator: (value) => value.length > 3
-                                  ? null
-                                  : 'insira uma cidade válida',
-                              type: TextInputType.text,
-                              action: TextInputAction.next,
-                              text: 'Cidade',
-                            ),
-                            CustomTextFormField(
-                              onChanged: (value) => controller.onChangeEndereco(value),
+                              onChanged: (value) =>
+                                  controller.onChangeEndereco(value),
                               type: TextInputType.text,
                               onSaved: (value) =>
                                   controller.onSavedEndereco(value),
@@ -157,7 +143,8 @@ class CadastroPage extends GetView {
                               text: 'Endereco',
                             ),
                             CustomTextFormField(
-                              onChanged: (value) => controller.onChangeCpfOrCnpj(value),
+                              onChanged: (value) =>
+                                  controller.onChangeCpfOrCnpj(value),
                               onSaved: (value) =>
                                   controller.onSavedCpfCnpj(value),
                               validator: (value) => value.length > 10
@@ -166,15 +153,15 @@ class CadastroPage extends GetView {
                               action: TextInputAction.next,
                               type: TextInputType.number,
                               max: 14,
-                              text:
-                                  !controller.isEmpresa ? 'CPF / CNPJ' : 'CNPJ',
+                              text: 'CPF / CNPJ',
                             ),
                             CustomTextFormField(
                               obscure: controller.obscure,
                               max: 12,
                               type: TextInputType.text,
                               text: 'Senha',
-                              onChanged: (value) => controller.onChangeSenha(value),
+                              onChanged: (value) =>
+                                  controller.onChangeSenha(value),
                               onSaved: (value) =>
                                   controller.onSavedPassword(value),
                               validator: (value) =>
@@ -190,7 +177,8 @@ class CadastroPage extends GetView {
                               ),
                             ),
                             CustomTextFormField(
-                              onChanged: (value) => controller.onChangeSenha(value),
+                              onChanged: (value) =>
+                                  controller.onChangeSenha(value),
                               max: 12,
                               obscure: controller.obscure,
                               type: TextInputType.text,
@@ -212,7 +200,6 @@ class CadastroPage extends GetView {
                             SizedBox(
                               height: 24,
                             ),
-                            
                             CustomButtonWidget(
                                 text: 'Cadastrar',
                                 callback: () {

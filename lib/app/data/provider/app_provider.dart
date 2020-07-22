@@ -49,6 +49,10 @@ ApiClient({@required this.httpClient});
   }
 
   getCategorias(){
+    
+  }
+
+  getCategorias(){
 
   }
 
