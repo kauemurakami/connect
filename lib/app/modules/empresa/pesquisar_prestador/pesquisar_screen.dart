@@ -46,9 +46,8 @@ class PesquisarScreen extends GetView {
                 'Filtrar',
                 style: subtitulo,
               )),
-          GetX<PesquisarController>(
-            builder: (_) {
-              return Container(
+          Obx(() =>
+              Container(
                   height: 40,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
@@ -56,16 +55,16 @@ class PesquisarScreen extends GetView {
                       return Padding(
                         padding: const EdgeInsets.all(4.0),
                         child: Obx(() => CustomSmallButtonWidget(
-                              text: _.filtros[index],
+                              text: controller.filtros[index],
                               index: index,
-                              item: _.selectedItem,
-                              callback: () => _.selectItem(index),
+                              item: controller.selectedItem,
+                              callback: () => controller.selectItem(index),
                             )),
                       );
                     },
-                    itemCount: _.filtros.length,
-                  ));
-            },
+                    itemCount: controller.filtros.length,
+                  ))
+            
           ),
           SizedBox(
             height: 10,
@@ -110,9 +109,8 @@ class PesquisarScreen extends GetView {
                 style: subtitulo,
               )),
 
-          GetX<PesquisarController>(builder: (_) {
-            //var select = _.selectedCategoria;
-            return Container(
+          
+            Container(
               height: 40,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -120,17 +118,16 @@ class PesquisarScreen extends GetView {
                   return Padding(
                     padding: const EdgeInsets.all(4.0),
                     child: Obx(() => CustomSmallButtonWidget(
-                          text: _.categorias[index],
+                          text: controller.categorias[index],
                           index: index,
-                          item: _.selectedCategoria,
-                          callback: () => _.selectCategoria(index),
+                          item: controller.selectedCategoria,
+                          callback: () => controller.selectCategoria(index),
                         )),
                   );
                 },
-                itemCount: _.categorias.length,
+                itemCount: 4,
               ),
-            );
-          }),
+          ),
 
           //lista de prestadores ????
           SizedBox(height: MediaQuery.of(context).size.height / 3),

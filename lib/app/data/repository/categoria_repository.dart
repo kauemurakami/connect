@@ -9,7 +9,7 @@ CategoriaRepository({@required this.apiClient}) : assert(apiClient != null);
 
 
   getAll(){
-
+    return apiClient.getCategorias();
   }
 
   getCategoria(){

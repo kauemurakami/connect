@@ -1,18 +1,24 @@
+import 'package:connect/app/data/model/sub_categoria_model.dart';
+
 class CategoriaModel {
 
-  int id;
-  String nome;
+  int idCategoria;
+  String categoria;
+  List<SubCategoriaModel> subCategorias;
 
-  CategoriaModel({ id, nome });
+  CategoriaModel({ this.categoria, this.idCategoria, this.subCategorias });
 
   CategoriaModel.fromJson(Map<String, dynamic> json){
-      this.id = json['id'];
-      this.nome = json['nome'];
+      this.categoria = json['categoria'];
+      this.idCategoria = json['idCategoria'];
+      this.subCategorias = json['subCategorias'];
   }
 
   Map<String, dynamic> toJson(){
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nome'] = this.nome;
+    data['categoria'] = this.categoria;
+    data['idCategoria'] = this.idCategoria;
+    data['subCategorias'] = this.subCategorias;
     return data;
   }
 }

@@ -1,10 +1,11 @@
 import 'dart:convert';
+import 'package:connect/app/data/model/categoria_model.dart';
 import 'package:connect/app/data/model/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 const baseUrl = 'https://deze6.com.br/apiConnect';
-final token = 'DOPAInbdsc12fdskp$*&';
+const token = r'DOPAInbdsc12fdskp$*&';
 class ApiClient {
 
 final http.Client httpClient;
@@ -50,12 +51,18 @@ ApiClient({@required this.httpClient});
 
   getCategorias() async {
     try{
-      var response = await httpClient.post('$baseUrl/categorias.php', body: ({'token':''}));
+      var response = await httpClient.post('$baseUrl/categorias.php', body: ({'token': token}));
+      print(token);
+      print(response.statusCode.toString());
+      if(response.statusCode == 200){
+        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        List<CategoriaModel> listCategorias = jsonResponse['categorias'].map<CategoriaModel>((map){
+          return CategoriaModel.fromJson(map);
+        }).toList();
+        print(listCategorias);
+        return listCategorias;
+      }
     }finally{}
-  }
-
-  getCategorias(){
-
   }
 
 

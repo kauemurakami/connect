@@ -1,13 +1,18 @@
+import 'package:connect/app/data/provider/app_provider.dart';
+import 'package:connect/app/data/repository/categoria_repository.dart';
 import 'package:connect/app/data/repository/empresa_repository.dart';
 import 'package:connect/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http;
 
 class PesquisarController extends GetxController {
   final EmpresaRepository repository;
   PesquisarController({@required this.repository}) : assert(repository != null);
 
+  final CategoriaRepository catRepository = CategoriaRepository(apiClient: ApiClient(httpClient: http.Client()));
+  
   final _selectedItem = 0.obs;
   get selectedItem => this._selectedItem.value;
   set selectedItem(value) => this._selectedItem.value = value;
@@ -35,6 +40,17 @@ class PesquisarController extends GetxController {
   void selectCategoria(index) =>
       this._selectedCategoria != index ? selectedCategoria = index : null;
       
+  getCategorias(){
+    catRepository.getAll().then((data) {
+      this.categorias = data;
+      print(data);
+     });
+  }
+  onInit(){
+    getCategorias();
+    super.onInit();
+  }
+
   //add filtros etc
   pesquisar() {
     Get.toNamed(Routes.PESQ_PRESTAD);

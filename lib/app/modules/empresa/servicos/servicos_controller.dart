@@ -14,7 +14,7 @@ class ServicosController extends GetxController {
     ServicoModel(
         id: 64363,
         nome: 'Limpeza de tubulações',
-        categoria: CategoriaModel(nome: 'Limpeza'),
+        categoria: CategoriaModel(categoria: 'Limpeza'),
         data: '13 de agosto',
         descricao:
             'Trabalhamos na área a mais 10 anos, sempre prestando o melhor serviço para melhor lhe atender',
@@ -26,7 +26,7 @@ class ServicosController extends GetxController {
     ServicoModel(
         id: 263262,
         nome: 'Limpeza galerias',
-        categoria: CategoriaModel(nome: 'Limpeza'),
+        categoria: CategoriaModel(categoria: 'Limpeza'),
         data: '24 de junho',
         descricao:
             'Trabalhamos na área a mais 10 anos, sempre prestando o melhor serviço para melhor lhe atender',
@@ -38,7 +38,7 @@ class ServicosController extends GetxController {
     ServicoModel(
         id: 513253,
         nome: 'Mecânica pesada',
-        categoria: CategoriaModel(nome: 'Automóveis'),
+        categoria: CategoriaModel(categoria: 'Automóveis'),
         data: '25 de julho',
         descricao:
             'Trabalhamos na área a mais 10 anos, sempre prestando o melhor serviço para melhor lhe atender',
@@ -50,7 +50,7 @@ class ServicosController extends GetxController {
     ServicoModel(
         id: 53253,
         nome: 'Mecânica de carros',
-        categoria: CategoriaModel(nome: 'Automóveis'),
+        categoria: CategoriaModel(categoria: 'Automóveis'),
         data: '12 de outubro',
         descricao:
             'Trabalhamos na área a mais 10 anos, sempre prestando o melhor serviço para melhor lhe atender',
@@ -62,7 +62,7 @@ class ServicosController extends GetxController {
     ServicoModel(
         id: 21412,
         nome: 'Pinturas',
-        categoria: CategoriaModel(nome: 'Construção cívil'),
+        categoria: CategoriaModel(categoria: 'Construção cívil'),
         data: '01 de setembro',
         descricao:
             'Trabalhamos na área a mais 10 anos, sempre prestando o melhor serviço para melhor lhe atender',
@@ -74,7 +74,7 @@ class ServicosController extends GetxController {
     ServicoModel(
       id: 321312,
       nome: 'Reformas em piscinas',
-      categoria: CategoriaModel(nome: 'Construção cívil'),
+      categoria: CategoriaModel(categoria: 'Construção cívil'),
       data: '03 de novembro',
       descricao:
           'Trabalhamos na área a mais 10 anos, sempre prestando o melhor serviço para melhor lhe atender',
