@@ -1,24 +1,57 @@
-import 'package:connect/app/data/model/sub_categoria_model.dart';
+// To parse this JSON data, do
+//
+//     final CategoriaModel = CategoriaModelFromJson(jsonString);
+
+import 'dart:convert';
 
 class CategoriaModel {
+    CategoriaModel({
+        this.categoria,
+        this.idCategoria,
+        this.subCategorias,
+    });
 
-  int idCategoria;
-  String categoria;
-  List<SubCategoriaModel> subCategorias;
+    String categoria;
+    String idCategoria;
+    SubCategorias subCategorias;
 
-  CategoriaModel({ this.categoria, this.idCategoria, this.subCategorias });
+    factory CategoriaModel.fromRawJson(String str) => CategoriaModel.fromJson(json.decode(str));
 
-  CategoriaModel.fromJson(Map<String, dynamic> json){
-      this.categoria = json['categoria'];
-      this.idCategoria = json['idCategoria'];
-      this.subCategorias = json['subCategorias'];
-  }
+    String toRawJson() => json.encode(toJson());
 
-  Map<String, dynamic> toJson(){
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['categoria'] = this.categoria;
-    data['idCategoria'] = this.idCategoria;
-    data['subCategorias'] = this.subCategorias;
-    return data;
-  }
+    factory CategoriaModel.fromJson(Map<String, dynamic> json) => CategoriaModel(
+        categoria: json["categoria"],
+        idCategoria: json["idCategoria"],
+        subCategorias: SubCategorias.fromJson(json["subCategorias"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "categoria": categoria,
+        "idCategoria": idCategoria,
+        "subCategorias": subCategorias.toJson(),
+    };
+}
+
+class SubCategorias {
+    SubCategorias({
+        this.nome,
+        this.idSubCategoria,
+    });
+
+    String nome;
+    String idSubCategoria;
+
+    factory SubCategorias.fromRawJson(String str) => SubCategorias.fromJson(json.decode(str));
+
+    String toRawJson() => json.encode(toJson());
+
+    factory SubCategorias.fromJson(Map<String, dynamic> json) => SubCategorias(
+        nome: json["nome"],
+        idSubCategoria: json["idSubCategoria"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "nome": nome,
+        "idSubCategoria": idSubCategoria,
+    };
 }

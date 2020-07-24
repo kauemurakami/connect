@@ -29,7 +29,7 @@ class PesquisarController extends GetxController {
   get distancia => this._distancia.value;
   set distancia(value) => this._distancia.value = value;
 
-  final _categorias = ['Usina', 'Mecânica', 'Limpeza', 'Construção Civil'].obs;
+  final RxList<String> _categorias = RxList<String>();
   get categorias => this._categorias.value;
   set categorias(value) => this._categorias.value = value;
 

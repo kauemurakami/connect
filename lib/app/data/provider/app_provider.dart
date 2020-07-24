@@ -51,16 +51,14 @@ ApiClient({@required this.httpClient});
 
   getCategorias() async {
     try{
-      var response = await httpClient.post('$baseUrl/categorias.php', body: ({'token': token}));
+      var response = await httpClient.post('$baseUrl/categorias.php', body: jsonEncode({"token": token}));
       print(token);
       print(response.statusCode.toString());
+      print(response.body);
       if(response.statusCode == 200){
-        Map<String, dynamic> jsonResponse = json.decode(response.body);
-        List<CategoriaModel> listCategorias = jsonResponse['categorias'].map<CategoriaModel>((map){
-          return CategoriaModel.fromJson(map);
-        }).toList();
-        print(listCategorias);
-        return listCategorias;
+        // List<Map<String, dynamic>> list =  json.decode(response.body);
+        // print(list);
+        return CategoriaModel.fromJson(json.decode(response.body));
       }
     }finally{}
   }
