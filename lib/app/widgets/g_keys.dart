@@ -4,5 +4,5 @@ import 'package:flutter/widgets.dart';
 
 
 class GKeys {
-  static final gKey1 = new GlobalKey<AutoCompleteTextFieldState<Cidade>>();
+  static final GlobalKey<AutoCompleteTextFieldState<Cidade>> key = new GlobalKey();
 }

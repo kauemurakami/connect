@@ -1,6 +1,5 @@
 import 'package:connect/app/data/model/categoria_model.dart';
 import 'package:connect/app/data/model/prestador_model.dart';
-import 'categoria_model.dart';
 
 class ServicoModel {
 

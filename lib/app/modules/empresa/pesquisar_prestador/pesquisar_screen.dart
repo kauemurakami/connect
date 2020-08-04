@@ -13,8 +13,9 @@ class PesquisarScreen extends GetView {
 //repository injection
   static final EmpresaRepository repository =
       EmpresaRepository(apiClient: ApiClient(httpClient: http.Client()));
-  final PesquisarController controller = Get.put(PesquisarController(repository: repository));
-  
+  final PesquisarController controller =
+      Get.put(PesquisarController(repository: repository));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +30,7 @@ class PesquisarScreen extends GetView {
               icon: Icon(
                 Icons.notifications_none,
               ),
-              onPressed: ()=> controller.notificacoes()),
+              onPressed: () => controller.notificacoes()),
           IconButton(
               icon: Icon(
                 Icons.shopping_cart,
@@ -46,26 +47,23 @@ class PesquisarScreen extends GetView {
                 'Filtrar',
                 style: subtitulo,
               )),
-          Obx(() =>
-              Container(
-                  height: 40,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: Obx(() => CustomSmallButtonWidget(
-                              text: controller.filtros[index],
-                              index: index,
-                              item: controller.selectedItem,
-                              callback: () => controller.selectItem(index),
-                            )),
-                      );
-                    },
-                    itemCount: controller.filtros.length,
-                  ))
-            
-          ),
+          Obx(() => Container(
+              height: 40,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Obx(() => CustomSmallButtonWidget(
+                          text: controller.filtros[index],
+                          index: index,
+                          item: controller.selectedItem,
+                          callback: () => controller.selectItem(index),
+                        )),
+                  );
+                },
+                itemCount: controller.filtros.length,
+              ))),
           SizedBox(
             height: 10,
           ),
@@ -109,29 +107,27 @@ class PesquisarScreen extends GetView {
                 style: subtitulo,
               )),
 
-          
-            Container(
-              height: 40,
-              child: ListView.builder(
+          Container(
+            height: 40,
+            child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(4.0),
-                    child: Obx(() => CustomSmallButtonWidget(
-                          text: controller.categorias[index],
-                          index: index,
-                          item: controller.selectedCategoria,
-                          callback: () => controller.selectCategoria(index),
-                        )),
+                    child: CustomSmallButtonWidget(
+                      text: controller.categorias.categorias[index].categoria,
+                      index: index,
+                      item: controller.selectedCategoria,
+                      callback: () => controller.selectCategoria(index),
+                    ),
                   );
                 },
-                itemCount: 4,
+                itemCount: controller.categorias.categorias.length
               ),
+            
           ),
           RaisedButton(
-            onPressed: () => controller.getCategorias(),
-            child: Text('aaa')
-          ),
+              onPressed: () => controller.getCategorias(), child: Text('aaa')),
 
           //lista de prestadores ????
           SizedBox(height: MediaQuery.of(context).size.height / 3),
@@ -141,8 +137,7 @@ class PesquisarScreen extends GetView {
               Container(
                 width: 200,
                 child: CustomButtonWidget(
-                    text: 'Pesquisar',
-                    callback: controller.pesquisar),
+                    text: 'Pesquisar', callback: controller.pesquisar),
               )
             ],
           )

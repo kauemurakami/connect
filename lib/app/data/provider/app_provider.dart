@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:connect/app/data/model/cadastros_model.dart';
 import 'package:connect/app/data/model/categoria_model.dart';
+import 'package:connect/app/data/model/categorias_model.dart';
 import 'package:connect/app/data/model/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
@@ -56,12 +58,55 @@ ApiClient({@required this.httpClient});
       print(response.statusCode.toString());
       print(response.body);
       if(response.statusCode == 200){
-        // List<Map<String, dynamic>> list =  json.decode(response.body);
-        // print(list);
-        return CategoriaModel.fromJson(json.decode(response.body));
+       
+        //var a = CategoriasModel.fromJson(json.decode(response.body));
+        //print(a.categorias[1].categoria);
+        return CategoriasModel.fromJson(json.decode(response.body));
       }
     }finally{}
   }
 
+  recuperarSenha(email) async {
+    try{
+      var response = await httpClient.post('$baseUrl/resetar-senha.php', body: jsonEncode({"email": email}));
+      print(response.statusCode.toString());
+      if(response.statusCode == 200){
+      print(response.body);
+      Map<String, dynamic> jsonResponse = json.decode(response.body);
+      return jsonResponse['mensagemErro'].toString();
+      }
+    }finally{}
+  }
+
+  alterarPerfil(usuario) async {
+    try{
+      var response = await httpClient.post('$baseUrl/resetar-senha.php', body: jsonEncode(
+        {"email":'a'}
+        ));
+      print(response.statusCode.toString());
+      if(response.statusCode == 200){
+      print(response.body);
+      Map<String, dynamic> jsonResponse = json.decode(response.body);
+      return jsonResponse['mensagemErro'].toString();
+      }
+    }finally{}
+  }
+
+  getUsuariosHome(user, pagina) async {
+  try {
+      var response = await httpClient.post('$baseUrl/home.php', body: jsonEncode({
+        "token" : token,
+        "tipo" : user.tipo,
+        "idCadastro" : user.id,
+        "pagina" : pagina
+      }));
+      print(response.statusCode.toString());
+      //print(response.body);
+      if (response.statusCode == 200) {
+        return Cadastros.fromJson(json.decode(response.body));
+      } else
+        print('erro ao adicionar usuário');
+    } finally { }
+  }
 
 }

@@ -1,3 +1,5 @@
+import 'package:connect/app/data/model/categoria_model.dart';
+import 'package:connect/app/data/model/categorias_model.dart';
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/categoria_repository.dart';
 import 'package:connect/app/data/repository/empresa_repository.dart';
@@ -29,9 +31,9 @@ class PesquisarController extends GetxController {
   get distancia => this._distancia.value;
   set distancia(value) => this._distancia.value = value;
 
-  final RxList<String> _categorias = RxList<String>();
-  get categorias => this._categorias.value;
-  set categorias(value) => this._categorias.value = value;
+  CategoriasModel _categorias = CategoriasModel();
+  get categorias => this._categorias;
+  set categorias(value) => this._categorias = value;
 
   changeDistancia(value) => this.distancia = value;
 
@@ -40,10 +42,11 @@ class PesquisarController extends GetxController {
   void selectCategoria(index) =>
       this._selectedCategoria != index ? selectedCategoria = index : null;
       
+  var a ;
   getCategorias(){
     catRepository.getAll().then((data) {
       this.categorias = data;
-      print(data);
+      print(this.categorias.categorias[0].categoria);
      });
   }
   onInit(){

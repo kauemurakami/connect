@@ -1,5 +1,6 @@
-class UserModel {
+import 'package:connect/app/data/model/servico_model.dart';
 
+class UserModel {
   //tipo: 1 = Empresas , 2 = Prestadores
 
   String id;
@@ -12,10 +13,12 @@ class UserModel {
   String senha;
   String endereco;
   String estado;
+  int favorito;
   bool statusPagamento;
-
+  List<ServicoModel> servicos;
   UserModel(
-      {
+      {this.servicos,
+      this.favorito,
       this.id,
       this.nome,
       this.email,
@@ -26,8 +29,7 @@ class UserModel {
       this.estado,
       this.telefone,
       this.tipo,
-      this.statusPagamento = false
-      });
+      this.statusPagamento = false});
 
   UserModel.fromJson(Map<String, dynamic> json) {
     this.id = json['id'];
@@ -41,6 +43,8 @@ class UserModel {
     this.email = json['email'];
     this.senha = json['senha'];
     this.statusPagamento = json['mensalidade'];
+    this.favorito = json['favorito'];
+    this.servicos = json['servicos'];
   }
 
   Map<String, dynamic> toJson() {
@@ -56,6 +60,9 @@ class UserModel {
     data['email'] = this.email;
     data['senha'] = this.senha;
     data['mensalidade'] = this.statusPagamento;
+    data['favorito'] = this.statusPagamento;
+    data['servicos'] = this.servicos;
+
     return data;
   }
 }

@@ -129,7 +129,15 @@ class CadastroPage extends GetView {
                               type: TextInputType.number,
                             ),
                             CustomDropDownEstados(),
-                            CustomTFFCidadesPage(),
+                            //CustomTFFCidadesPage(),
+                            CustomTextFormField(
+                              onChanged: (value) =>
+                                  controller.onChangeCidade(value),
+                              type: TextInputType.text,
+                              onSaved: (value) =>
+                                  controller.onSavedCidade(value),
+                              validator: (value) => value.length > 3,
+                            ),
                             CustomTextFormField(
                               onChanged: (value) =>
                                   controller.onChangeEndereco(value),

@@ -12,8 +12,9 @@ import 'package:http/http.dart' as http;
 class CadastroController extends GetxController {
   final UserRepository repository;
   CadastroController({@required this.repository}) : assert(repository != null);
-  
-  final LocalidadesRepository localRepository = LocalidadesRepository(apiClient: LocalidadesApiClient(httpClient: http.Client()));
+
+  final LocalidadesRepository localRepository = LocalidadesRepository(
+      apiClient: LocalidadesApiClient(httpClient: http.Client()));
 
   final _user = UserModel().obs;
   get user => this._user.value;
@@ -21,7 +22,7 @@ class CadastroController extends GetxController {
 
   final _selectedEstado = Estado().obs;
   get selectedEstado => this._selectedEstado.value;
-  set selectedEstado(value) => this._selectedEstado.value = value;  
+  set selectedEstado(value) => this._selectedEstado.value = value;
 
   final _selectedCidade = Cidade().obs;
   get selectedCidade => this._selectedCidade.value;
@@ -30,7 +31,7 @@ class CadastroController extends GetxController {
   final _isEmailCheck = false.obs;
   get isEmailCheck => this._isEmailCheck.value;
   set isEmailCheck(value) => this._isEmailCheck.value = value;
-  
+
   final _cidades = List<Cidade>().obs;
   get cidades => this._cidades.value;
   set cidades(value) => this._cidades.value = value;
@@ -42,8 +43,7 @@ class CadastroController extends GetxController {
   final _pass = ''.obs;
   get pass => this._pass.value;
   set pass(value) => this._pass.value = value;
-  
-  
+
   final _estados = List<Estado>().obs;
   get estados => this._estados.value;
   set estados(value) => this._estados.value = value;
@@ -51,9 +51,9 @@ class CadastroController extends GetxController {
   final _isEmpresa = false.obs;
   get isEmpresa => this._isEmpresa.value;
   set isEmpresa(value) => this._isEmpresa.value = value;
-  
+
   onSavedPassword(value) => this.user.senha = value;
-  
+
   onSavedEmail(value) => this.user.email = value;
 
   onSavedName(value) => this.user.nome = value;
@@ -66,7 +66,7 @@ class CadastroController extends GetxController {
 
   onSavedTelefone(value) => this.user.telefone = value;
 
-  onSavedCpfCnpj(value) => this.user.cnpjOrCpf = value ;
+  onSavedCpfCnpj(value) => this.user.cnpjOrCpf = value;
 
   onChangeName(value) => this.user.nome = value;
 
@@ -82,16 +82,20 @@ class CadastroController extends GetxController {
 
   onChangeSenha(value) => this.user.senha = value;
 
-  emailValidate(value) => GetUtils.isEmail(value) ? null : 'Insira um email válido';
-  
+  emailValidate(value) =>
+      GetUtils.isEmail(value) ? null : 'Insira um email válido';
+
   onValidateName(value) => value.length < 3 ? 'Insira um nome válido' : null;
 
-  onChangeEmail(value) => GetUtils.isEmail(value) ? this.isEmailCheck = true : this.isEmailCheck = false;
-  
-  telefoneValidate(value) => value.length < 11 ? 'Insíra um número válido' : null;
+  onChangeEmail(value) => GetUtils.isEmail(value)
+      ? this.isEmailCheck = true
+      : this.isEmailCheck = false;
+
+  telefoneValidate(value) =>
+      value.length < 11 ? 'Insíra um número válido' : null;
 
   showPassword() => this.obscure ? this.obscure = false : this.obscure = true;
-  
+
   passwordValidate(value) {
     if (value.length > 5) {
       if (this.pass == '') {
@@ -103,38 +107,43 @@ class CadastroController extends GetxController {
     } else
       return 'Insira uma senha válida';
   }
-  onChangeSwitch(value) => value == this.isEmpresa? null : this.isEmpresa = value ;
 
-  onChangeEstados(value){
-    if(this.selectedEstado.nome != value) this.selectedEstado = value ;
+  onChangeSwitch(value) =>
+      value == this.isEmpresa ? null : this.isEmpresa = value;
+
+  onChangeEstados(value) {
+    this.selectedEstado = value;
+    print(this.selectedEstado.nome);
     getCidades();
-  } 
+  }
 
   selectCidade(item) => this.selectedCidade = item;
 
-  onInit(){
+  onInit() {
     getEstados();
     super.onInit();
   }
 
-  getEstados(){
+  getEstados() {
     localRepository.getEstados().then((data) {
-      this.estados = data; 
+      this.estados = data;
       this.selectedEstado = this.estados[0];
     });
   }
 
-  getCidades(){
-    localRepository.getCidades(this.selectedEstado).then((data) => this.cidades = data);
+  getCidades() {
+    localRepository
+        .getCidades(this.selectedEstado)
+        .then((data) => this.cidades = data);
   }
 
-  cadastrar(){
+  cadastrar() {
     print('cadastrar controller');
     this.isEmpresa ? this.user.tipo = '1' : this.user.tipo = '2';
     this.user.estado = this.selectedEstado.nome;
     this.user.cidade = this.selectedCidade.nome;
-    repository.cadastro(this.user); 
-    
+    repository.cadastro(this.user);
+
     print(this.user.nome);
     print(this.user.email);
     print(this.user.tipo);
@@ -144,8 +153,7 @@ class CadastroController extends GetxController {
     print(this.user.estado);
     print(this.user.cidade);
 
-    Get.toNamed(Routes.ADD_CARTAO);
-
-  } 
-
+    Get.offNamed(Routes.HOME_EMPRESA, arguments: this.user);
+    //Get.toNamed(Routes.ADD_CARTAO);
+  }
 }

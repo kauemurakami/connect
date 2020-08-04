@@ -14,6 +14,10 @@ class RecuperarSenhaController extends GetxController {
   final _email = ''.obs;
   get email => this._email.value;
   set email(value) => this._email.value = value;
+  
+  final _sucesso = ''.obs;
+  get sucesso => this._sucesso.value;
+  set sucesso(value) => this._sucesso.value = value;
 
   onChangeEmail(value) {
     print('onchange');
@@ -23,8 +27,8 @@ class RecuperarSenhaController extends GetxController {
       this.isEmailCheck = false;
   }
 
-  enviarEmailRecuperacao(){
-    //this.email ...
+  recuperarSenha(){
+    repository.recuperarSenha(this.email).then((data) => this.sucesso = data );
   }
   
 //onSaved

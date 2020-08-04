@@ -1,5 +1,6 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/empresa_repository.dart';
+import 'package:connect/app/data/repository/user_repository.dart';
 import 'package:connect/app/modules/empresa/empresa_controller.dart';
 import 'package:connect/app/widgets/custom_appbar_widget.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class HomeScreen extends GetView {
 //repository injection
-static final EmpresaRepository repository = EmpresaRepository(apiClient: ApiClient(httpClient: http.Client()));
+static final UserRepository repository = UserRepository(apiClient: ApiClient(httpClient: http.Client()));
 
   final EmpresaController controller = Get.put(EmpresaController(repository: repository));
 

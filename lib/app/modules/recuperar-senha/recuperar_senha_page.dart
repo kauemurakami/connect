@@ -44,7 +44,8 @@ class RecuperarSenhaPage extends StatelessWidget {
                     ),
                     SizedBox(height: MediaQuery.of(context).size.height / 10),
                     GetX<RecuperarSenhaController>(
-                        init: RecuperarSenhaController(repository: this.repository),
+                        init: RecuperarSenhaController(
+                            repository: this.repository),
                         builder: (_) {
                           return Form(
                             key: _formKey,
@@ -52,6 +53,7 @@ class RecuperarSenhaPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 CustomTextFormField(
+                                  type: TextInputType.emailAddress,
                                   onChanged: (value) => _.onChangeEmail(value),
                                   onSaved: (value) => _.onSavedEmail(value),
                                   validator: (value) => _.emailValidate(value),
@@ -59,21 +61,31 @@ class RecuperarSenhaPage extends StatelessWidget {
                                   text: 'Email de usuário',
                                   sufixIcon: Icon(
                                     Icons.check_circle,
-                                    color:
-                                        _.isEmailCheck ? Colors.green : Colors.grey,
+                                    color: _.isEmailCheck
+                                        ? Colors.green
+                                        : Colors.grey,
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 48,
+                                Padding(
+                                  padding: EdgeInsets.all(24.0),
+                                  child: _.sucesso.length > 0
+                                      ? Text(
+                                          _.sucesso,
+                                          style: TextStyle(color: Colors.black),
+                                        )
+                                      : Text(
+                                          '',
+                                          style: TextStyle(color: Colors.red),
+                                        ),
                                 ),
                                 CustomButtonWidget(
                                     text: 'Enviar',
                                     callback: () {
-                                      final FormState form = _formKey.currentState;
+                                      final FormState form =
+                                          _formKey.currentState;
                                       if (form.validate()) {
                                         form.save();
-                                        _.enviarEmailRecuperacao();
-                                        Get.offAllNamed(Routes.INITIAL);
+                                        _.recuperarSenha();
                                       } else {
                                         //snackbar
                                         print('erro ao entrar');
