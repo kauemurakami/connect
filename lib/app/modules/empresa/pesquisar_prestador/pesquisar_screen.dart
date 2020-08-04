@@ -126,9 +126,6 @@ class PesquisarScreen extends GetView {
               ),
             
           ),
-          RaisedButton(
-              onPressed: () => controller.getCategorias(), child: Text('aaa')),
-
           //lista de prestadores ????
           SizedBox(height: MediaQuery.of(context).size.height / 3),
           Row(

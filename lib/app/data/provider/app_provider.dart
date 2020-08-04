@@ -54,13 +54,7 @@ ApiClient({@required this.httpClient});
   getCategorias() async {
     try{
       var response = await httpClient.post('$baseUrl/categorias.php', body: jsonEncode({"token": token}));
-      print(token);
-      print(response.statusCode.toString());
-      print(response.body);
       if(response.statusCode == 200){
-       
-        //var a = CategoriasModel.fromJson(json.decode(response.body));
-        //print(a.categorias[1].categoria);
         return CategoriasModel.fromJson(json.decode(response.body));
       }
     }finally{}
@@ -103,7 +97,7 @@ ApiClient({@required this.httpClient});
       print(response.statusCode.toString());
       //print(response.body);
       if (response.statusCode == 200) {
-        return Cadastros.fromJson(json.decode(response.body));
+        return Cadastro.fromJson(json.decode(response.body));
       } else
         print('erro ao adicionar usuário');
     } finally { }

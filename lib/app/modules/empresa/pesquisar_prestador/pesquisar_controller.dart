@@ -46,7 +46,6 @@ class PesquisarController extends GetxController {
   getCategorias(){
     catRepository.getAll().then((data) {
       this.categorias = data;
-      print(this.categorias.categorias[0].categoria);
      });
   }
   onInit(){

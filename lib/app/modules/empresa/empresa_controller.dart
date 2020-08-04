@@ -10,32 +10,36 @@ class EmpresaController extends GetxController {
   final UserRepository repository;
   EmpresaController({@required this.repository}) : assert(repository != null);
 
-  //obj empresa
-
   notificacoes() => Get.toNamed(Routes.NOTIFICACOES);
 
   chat() {
     //Get.toNamed(Routes.MESSAGES);
   }
 
-  final _user =Get.arguments.obs;
+  open() {}
+
+  final _user = Get.arguments.obs;
   get user => this._user.value;
   set user(value) => this._user.value = value;
 
   final _pagina = 1.obs;
   get pagina => this._pagina.value;
   set pagina(value) => this._pagina.value = value;
-  
-  onInit(){
+
+  onInit() {
     getHome();
     super.onInit();
   }
-  
-  final _cadastros = Cadastros().obs;
+
+  final _cadastros = Cadastro().obs;
   get cadastros => this._cadastros.value;
   set cadastros(value) => this._cadastros.value = value;
-  
-  getHome(){
-    repository.getUsuariosHome(this.user, this.pagina).then((data) => this.cadastros = data);
+
+  getHome() {
+    repository.getUsuariosHome(this.user, this.pagina).then((data) {
+      this.cadastros = data;
+      print(cadastros.cadastros[0].nome);
+      print(cadastros.cadastros.length.toString());
+    });
   }
 }
