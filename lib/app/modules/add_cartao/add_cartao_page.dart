@@ -34,6 +34,7 @@ class AdicionarCartaoPage extends GetView {
                   ),
                 ],
               ),
+              Obx(() => 
               Container(
                 padding: EdgeInsets.only(top: 16),
                 child: GetX<AddCartaoController>(
@@ -54,6 +55,8 @@ class AdicionarCartaoPage extends GetView {
                       );
                     }),
               ),
+              ),
+              
               Container(
                 padding: EdgeInsets.all(16),
                 child: Column(

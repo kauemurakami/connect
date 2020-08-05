@@ -8,30 +8,33 @@ import 'package:meta/meta.dart';
 
 const baseUrl = 'https://deze6.com.br/apiConnect';
 const token = r'DOPAInbdsc12fdskp$*&';
-class ApiClient {
 
-final http.Client httpClient;
-ApiClient({@required this.httpClient});
+class ApiClient {
+  final http.Client httpClient;
+  ApiClient({@required this.httpClient});
 
   cadastro(user) async {
     try {
-      var response = await httpClient.post('$baseUrl/cadastro.php', body: jsonEncode(user));
+      var response = await httpClient.post('$baseUrl/cadastro.php',
+          body: jsonEncode(user));
       print(response.statusCode.toString());
       print(response.body);
       if (response.statusCode == 200) {
         Map<String, dynamic> jsonResponse = json.decode(response.body);
         UserModel userModel = user;
-        userModel.statusPagamento = jsonResponse['cadastro']['mensalidade'] == 'false' ? false : true;
+        userModel.statusPagamento =
+            jsonResponse['cadastro']['mensalidade'] == 'false' ? false : true;
         return userModel;
       } else
         print('erro ao adicionar usuário');
-    } finally { }
+    } finally {}
   }
 
   login(user) async {
-    try{
-      var response = await httpClient.post('$baseUrl/login.php', body: jsonEncode({'email':user.email, 'senha':user.senha }));
-      if(response.statusCode == 200){
+    try {
+      var response = await httpClient.post('$baseUrl/login.php',
+          body: jsonEncode({'email': user.email, 'senha': user.senha}));
+      if (response.statusCode == 200) {
         print('logado com sucesso');
         Map<String, dynamic> jsonResponse = json.decode(response.body);
         UserModel userModel = UserModel();
@@ -42,65 +45,79 @@ ApiClient({@required this.httpClient});
         userModel.endereco = jsonResponse['usuario']['endereco'];
         userModel.telefone = jsonResponse['usuario']['telefone'];
         userModel.tipo = jsonResponse['usuario']['tipoLogin'];
-        userModel.statusPagamento = jsonResponse['usuario']['mensalidade'] == 'false' ? false : true ;
+        userModel.statusPagamento =
+            jsonResponse['usuario']['mensalidade'] == 'false' ? false : true;
         userModel.nome = jsonResponse['usuario']['nome'];
         print(userModel.statusPagamento.toString());
         print(userModel.tipo);
         return userModel;
-      }else { print('erro ao logar'); return 'erro';}
-    }finally{}
+      } else {
+        print('erro ao logar');
+        return 'erro';
+      }
+    } finally {}
   }
 
   getCategorias() async {
-    try{
-      var response = await httpClient.post('$baseUrl/categorias.php', body: jsonEncode({"token": token}));
-      if(response.statusCode == 200){
+    try {
+      var response = await httpClient.post('$baseUrl/categorias.php',
+          body: jsonEncode({"token": token}));
+      if (response.statusCode == 200) {
         return CategoriasModel.fromJson(json.decode(response.body));
       }
-    }finally{}
+    } finally {}
   }
 
   recuperarSenha(email) async {
-    try{
-      var response = await httpClient.post('$baseUrl/resetar-senha.php', body: jsonEncode({"email": email}));
+    try {
+      var response = await httpClient.post('$baseUrl/resetar-senha.php',
+          body: jsonEncode({"email": email}));
       print(response.statusCode.toString());
-      if(response.statusCode == 200){
-      print(response.body);
-      Map<String, dynamic> jsonResponse = json.decode(response.body);
-      return jsonResponse['mensagemErro'].toString();
+      if (response.statusCode == 200) {
+        print(response.body);
+        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        return jsonResponse['mensagemErro'].toString();
       }
-    }finally{}
+    } finally {}
   }
 
-  alterarPerfil(usuario) async {
-    try{
-      var response = await httpClient.post('$baseUrl/resetar-senha.php', body: jsonEncode(
-        {"email":'a'}
-        ));
+  editarPerfil(user) async {
+    try {
+      var response = await httpClient.post('$baseUrl/dados-perfil.php',
+          body: jsonEncode({
+            "token": token,
+            "tipo": user.tipo,
+            "idCadastro": user.id,
+            "cnpj": user.cnpjOrCpf,
+            "nomeEmpresa": user.id,
+            "cidade": user.cidade,
+            "estado": user.estado,
+            "endereco": user.endereco,
+          }));
       print(response.statusCode.toString());
-      if(response.statusCode == 200){
       print(response.body);
-      Map<String, dynamic> jsonResponse = json.decode(response.body);
-      return jsonResponse['mensagemErro'].toString();
-      }
-    }finally{}
+      if (response.statusCode == 200) {
+        return true;
+      } else
+        print('erro ao adicionar usuário');
+    } finally {}
   }
 
   getUsuariosHome(user, pagina) async {
-  try {
-      var response = await httpClient.post('$baseUrl/home.php', body: jsonEncode({
-        "token" : token,
-        "tipo" : user.tipo,
-        "idCadastro" : user.id,
-        "pagina" : pagina
-      }));
+    try {
+      var response = await httpClient.post('$baseUrl/home.php',
+          body: jsonEncode({
+            "token": token,
+            "tipo": user.tipo,
+            "idCadastro": user.id,
+            "pagina": pagina
+          }));
       print(response.statusCode.toString());
       //print(response.body);
       if (response.statusCode == 200) {
         return Cadastro.fromJson(json.decode(response.body));
       } else
         print('erro ao adicionar usuário');
-    } finally { }
+    } finally {}
   }
-
 }

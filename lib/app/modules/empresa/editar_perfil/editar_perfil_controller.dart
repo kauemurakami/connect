@@ -1,11 +1,10 @@
-import 'package:connect/app/data/model/empresa_model.dart';
-import 'package:connect/app/data/repository/empresa_repository.dart';
-import 'package:connect/app/modules/empresa/empresa_controller.dart';
+import 'package:connect/app/data/model/user_model.dart';
+import 'package:connect/app/data/repository/user_repository.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
 class EditarPerfilController extends GetxController {
-  final EmpresaRepository repository;
+  final UserRepository repository;
   EditarPerfilController({@required this.repository})
       : assert(repository != null);
 
@@ -17,30 +16,44 @@ class EditarPerfilController extends GetxController {
   get isTelefoneCheck => this._isTelefone.value;
   set isTelefoneCheck(value) => this._isTelefone.value = value;
 
-  final _user = EmpresaModel().obs;
+  final _user = UserModel().obs;
   get user => this._user.value;
   set user(value) => this._user.value = value;
 
+  onChangedName(value) => this.user.nome = value;
 
-  salvarAlteracoes(){
-    
-  }
+  onChangedCPForCNPJ(value) => this.user.cnpjOrCpf = value;
 
-  onSavedEmail(value) => ''; //this.user.email = value;
+  onChangedEstado(value) => this.user.estado = value;
 
-  //onChanged
-  onChangeEmail(value) => GetUtils.isEmail(value)
-      ? this.isEmailCheck = true
-      : this.isEmailCheck = false;
+  onChangedCidade(value) => this.user.cidade = value;
 
-  emailValidate(value) =>
-      GetUtils.isEmail(value) ? null : 'Insira um email valido';
+  onChangedEndereco(value) => this.user.endereco = value;
+
+  onSavedCidade(value) => this.user.cidade = value;
+
+  onSavedEstado(value) => this.user.estado = value;
+
+  onSavedCPForCNPJ(value) => this.user.cnpjOrCpf = value;
+
+  onSavedEndereco(value) => this.user.endereco = value;
+
+  salvarAlteracoes() => repository.editarPerfil(this.user).then((data) => this.sucesso = data );
 
   onSavedName(value) => this.user.nome = value;
-
-  nameValidate(value) => value.length < 3 ? 'Insira um nome válido' : null;
-
-  onChangeTelefone(value) => GetUtils.isPhoneNumber(value)
+  validateCPForCNPJ(value) =>
+      value.length < 11 ? 'Insira um cpf ou cnpj válido' : null;
+  validateEndereco(value) => value.length < 4 ? 'Insira um endereço válido' : null;
+  validateCidade(value) => value.length < 3 ? 'Insira uma cidade válida' : null;
+  validateEstado(value) => value.length < 4 ? 'Insira um estado válido' : null;
+  validateTelefone(value) => value.length < 11 ? 'Insira um telefone válido' : null;
+  nameValidate(value) => value.length < 2 ? 'Insira um nome válido' : null;
+  
+  final _sucesso = false.obs;
+  get sucesso => this._sucesso.value;
+  set sucesso(value) => this._sucesso.value = value;
+  
+  onChangedTelefone(value) => GetUtils.isPhoneNumber(value)
       ? this.isTelefoneCheck = true
       : this.isTelefoneCheck = false;
 

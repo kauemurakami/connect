@@ -8,4 +8,5 @@ class PagamentoController extends GetxController {
   PagamentoController({@required this.repository}) : assert(repository != null);
 
   
+  
 }

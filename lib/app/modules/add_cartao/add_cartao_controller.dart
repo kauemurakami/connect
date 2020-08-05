@@ -13,6 +13,10 @@ class AddCartaoController extends GetxController {
 
   final cartao = CartaoModel();
   
+  final _isCartao = true.obs;
+  get isCartao => this._isCartao.value;
+  set isCartao(value) => this._isCartao.value = value;
+
   showBackCodigo() => this.showBack == false ? this.showBack = true : this.showBack = false;
 
   onChangeNome(value) => this.cartao.nome = value;

@@ -13,5 +13,9 @@ UserRepository({@required this.apiClient}) : assert(apiClient != null);
 
   recuperarSenha(email) => apiClient.recuperarSenha(email);
 
+  editarPerfil(user){
+    return apiClient.editarPerfil(user);
+  }
+
   getUsuariosHome(user, pagina) => apiClient.getUsuariosHome(user, pagina);
 }
