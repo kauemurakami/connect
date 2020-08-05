@@ -12,10 +12,6 @@ class AddCartaoController extends GetxController {
   set showBack(value) => this._showBack.value = value;
 
   final cartao = CartaoModel();
-  
-  final _isCartao = true.obs;
-  get isCartao => this._isCartao.value;
-  set isCartao(value) => this._isCartao.value = value;
 
   showBackCodigo() => this.showBack == false ? this.showBack = true : this.showBack = false;
 
@@ -33,6 +29,6 @@ class AddCartaoController extends GetxController {
 
   validateCodigo(value) => value < 3 ? 'Insirá um código válido' : null ;
   onSavedCodigo(value) => value < 3 ? null : this.cartao.codigo = value;
-  onChangeCodigo(value) {this.cartao.codigo = value; print(this.cartao.codigo);}
+  onChangeCodigo(value) => this.cartao.codigo = value;
 
 }

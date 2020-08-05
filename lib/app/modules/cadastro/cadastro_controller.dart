@@ -96,6 +96,8 @@ class CadastroController extends GetxController {
 
   showPassword() => this.obscure ? this.obscure = false : this.obscure = true;
 
+  validateCidade(value) => value.length < 4 ? 'Insira uma cidade valida' : null;
+  
   passwordValidate(value) {
     if (value.length > 5) {
       if (this.pass == '') {
@@ -109,7 +111,7 @@ class CadastroController extends GetxController {
   }
 
   onChangeSwitch(value) =>
-      value == this.isEmpresa ? null : this.isEmpresa = value;
+      this.isEmpresa = value;
 
   onChangeEstados(value) {
     this.selectedEstado = value;
