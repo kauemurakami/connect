@@ -138,7 +138,7 @@ class AdicionarCartaoPage extends GetView {
                                 CustomButtonWidget(
                                     text: 'Adicionar',
                                     callback: () {
-                                      Get.offNamed('confirmacao-pagamento');
+                                      Get.back();
                                       final FormState form =
                                           _formKey.currentState;
                                       if (form.validate()) {

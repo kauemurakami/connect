@@ -17,18 +17,18 @@ class AddCartaoController extends GetxController {
 
   onChangeNome(value) => this.cartao.nome = value;
   onSavedName(value) => this.cartao.nome = value;
-  nameValidate(value) => value < 3 ? 'Insira um nome válido' : null;
+  nameValidate(value) => value.length < 3 ? 'Insira um nome válido' : null;
 
   onSavedNumero(value) => this.cartao.numero = value;
   onChangeNumero(value) => value != this.cartao.numero ? this.cartao.numero = value : null;
   validateNumero(value) => value.length == 16 ? null :'Insira um cartão válido' ;
 
-  onSavedValidade(value) => value < 3 ? 'Insira um código de cartão válido' : this.cartao.validade = value;
+  onSavedValidade(value) => value.length < 3 ? 'Insira um código de cartão válido' : this.cartao.validade = value;
   onChangeValidade(value) => this.cartao.validade = value;
   validateValidade(value) => value.length < 5 ? 'Insira uma validade válida' : null;
 
-  validateCodigo(value) => value < 3 ? 'Insirá um código válido' : null ;
-  onSavedCodigo(value) => value < 3 ? null : this.cartao.codigo = value;
+  validateCodigo(value) => value.length < 3 ? 'Insirá um código válido' : null ;
+  onSavedCodigo(value) => value.length < 3 ? null : this.cartao.codigo = value;
   onChangeCodigo(value) => this.cartao.codigo = value;
 
 }
