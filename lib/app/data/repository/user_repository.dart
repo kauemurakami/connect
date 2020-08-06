@@ -13,6 +13,8 @@ UserRepository({@required this.apiClient}) : assert(apiClient != null);
 
   recuperarSenha(email) => apiClient.recuperarSenha(email);
 
+  pagar(user, tipo, cartao) => apiClient.pagar(user, tipo, cartao);
+
   editarPerfil(user){
     return apiClient.editarPerfil(user);
   }

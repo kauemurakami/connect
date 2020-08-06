@@ -13,6 +13,29 @@ class ApiClient {
   final http.Client httpClient;
   ApiClient({@required this.httpClient});
 
+  pagar(user, tipo, cartao) async {
+    try {
+      var response = await httpClient.post('$baseUrl/pagamento.php',
+          body: jsonEncode({
+            "tipoPamaneto": tipo.toString(),
+            "idCadastro": user.id,
+            "cpf_or_cnpjCartao": user.cnpjOrCpf,
+            "codCartao": cartao.codigo,
+            "nomeCartao": cartao.nome,
+            "aValidade": '${cartao.validade[3]}${cartao.validade[4]}}',
+            "mValidade": '${cartao.validade[0]}${cartao.validade[1]}} ',
+            "nCartao": cartao.numero
+          }));
+      print(response.statusCode.toString());
+      print(response.body);
+      if (response.statusCode == 200) {
+        Map<String, dynamic> jsonResponse = json.decode(response.body);
+        return jsonResponse;
+      } else
+        print('erro ao pagar');
+    } finally {}
+  }
+
   cadastro(user) async {
     try {
       var response = await httpClient.post('$baseUrl/cadastro.php',

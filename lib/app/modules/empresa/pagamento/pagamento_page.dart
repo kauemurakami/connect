@@ -109,7 +109,7 @@ class PagamentoPage extends StatelessWidget {
                                 CustomCardVerticalWidget(cartao: CartaoModel())
                               ]),
                         )
-                        : Center(child: Container(width: 200 ,child: CustomButtonWidget(text: 'Baixar boleto', callback: () => controller.gerarBoleto(),)))
+                        : Center(child: Container(width: 200 ,child: CustomButtonWidget(text: 'Baixar boleto', callback: () => controller.pagar(),)))
                       ),
 
                     ])),
@@ -163,7 +163,7 @@ class PagamentoPage extends StatelessWidget {
                   ),
                   CustomButtonWidget(
                     text: 'Finalizar',
-                    callback: () => print('finalizado'),
+                    callback: () => controller.pagar()
                   )
                 ],
               ),
