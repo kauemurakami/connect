@@ -1,5 +1,6 @@
 import 'package:connect/app/data/model/cartao_model.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
+import 'package:connect/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
 
@@ -17,6 +18,12 @@ class PagamentoController extends GetxController {
     this.metodoCartao = value;
     print(this.metodoCartao);
   }
+
+  gerarBoleto() {
+    
+  }
+
+  addCartao() => Get.toNamed(Routes.ADD_CARTAO);
 
   pagar(){
     

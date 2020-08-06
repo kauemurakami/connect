@@ -34,7 +34,6 @@ class AdicionarCartaoPage extends GetView {
                   ),
                 ],
               ),
-              Obx(() => 
               Container(
                 padding: EdgeInsets.only(top: 16),
                 child: GetX<AddCartaoController>(
@@ -54,7 +53,6 @@ class AdicionarCartaoPage extends GetView {
                         ],
                       );
                     }),
-              ),
               ),
               
               Container(
@@ -138,7 +136,7 @@ class AdicionarCartaoPage extends GetView {
                                   height: 48,
                                 ),
                                 CustomButtonWidget(
-                                    text: 'Cadastrar',
+                                    text: 'Adicionar',
                                     callback: () {
                                       Get.offNamed('confirmacao-pagamento');
                                       final FormState form =
