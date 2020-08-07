@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 final appTheme = ThemeData(
-  accentColor: Colors.lightGreen,
+  accentColor: Color(0xff16a085),
     primaryColor: Colors.grey,
-    splashColor: Colors.greenAccent,
+    splashColor: Color(0xff16a085),
     primaryColorBrightness: Brightness.light,
-    buttonTheme: ButtonThemeData(buttonColor: Colors.green),
+    buttonTheme: ButtonThemeData(buttonColor: Color(0xff16a085)),
 
     sliderTheme: SliderThemeData(
     activeTrackColor: Colors.green,
-    inactiveTrackColor: Colors.lightGreen,
+    inactiveTrackColor: Color(0xff16a085),
     trackShape: RoundedRectSliderTrackShape(),
     trackHeight: 4.0,
     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12.0),
@@ -18,7 +18,7 @@ final appTheme = ThemeData(
     overlayShape: RoundSliderOverlayShape(overlayRadius: 28.0),
     tickMarkShape: RoundSliderTickMarkShape(),
     activeTickMarkColor: Colors.lightGreen,
-    inactiveTickMarkColor: Colors.lightGreen,
+    inactiveTickMarkColor: Color(0xff16a085),
     valueIndicatorShape: PaddleSliderValueIndicatorShape(),
     valueIndicatorColor: Colors.lightGreen,
     valueIndicatorTextStyle: TextStyle(
