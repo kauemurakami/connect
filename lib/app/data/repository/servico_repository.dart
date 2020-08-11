@@ -7,11 +7,14 @@ final ApiClient apiClient;
 
 ServicoRepository({@required this.apiClient}) : assert(apiClient != null);
 
-
-  getAllServicos(){
-
+  unidadeServicos(){
+    return apiClient.unidadesServico();
   }
 
+  categoriasServico(idEmpresa){
+    return apiClient.categoriaServico(idEmpresa);
+  }
+  
   getPrestadorServicos(prestador){
 
   }

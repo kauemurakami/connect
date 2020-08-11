@@ -21,7 +21,7 @@ class CustomButtonWidget extends Container {
             this.text,
             style: textButton,
           ),
-          color: Colors.green),
+           ),
     );
   }
 }

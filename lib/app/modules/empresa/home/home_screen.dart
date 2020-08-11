@@ -1,8 +1,6 @@
 import 'package:connect/app/data/provider/app_provider.dart';
-import 'package:connect/app/data/repository/empresa_repository.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
 import 'package:connect/app/modules/empresa/empresa_controller.dart';
-import 'package:connect/app/modules/empresa/home/empresa_home_controller.dart';
 import 'package:connect/app/modules/empresa/home/widgets/custom_card_widget.dart';
 import 'package:connect/app/widgets/custom_appbar_widget.dart';
 import 'package:flutter/material.dart';

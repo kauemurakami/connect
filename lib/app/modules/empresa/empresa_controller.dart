@@ -38,8 +38,8 @@ class EmpresaController extends GetxController {
   getHome() {
     repository.getUsuariosHome(this.user, this.pagina).then((data) {
       this.cadastros = data;
-      print(cadastros.cadastros[0].nome);
-      print(cadastros.cadastros.length.toString());
+      //print(cadastros.cadastros[0].nome);
+      //print(cadastros.cadastros.length.toString());
     });
   }
 }

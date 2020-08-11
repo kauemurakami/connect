@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:connect/app/data/model/cadastros_model.dart';
-import 'package:connect/app/data/model/categoria_model.dart';
+import 'package:connect/app/data/model/categoria_servico_model.dart';
 import 'package:connect/app/data/model/categorias_model.dart';
+import 'package:connect/app/data/model/unidade_servico_model.dart';
 import 'package:connect/app/data/model/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
@@ -12,6 +13,26 @@ const token = r'DOPAInbdsc12fdskp$*&';
 class ApiClient {
   final http.Client httpClient;
   ApiClient({@required this.httpClient});
+
+  categoriaServico(idEmpresa) async {
+    try {
+      var response = await httpClient.post('$baseUrl/categoria-servico.php',
+          body: jsonEncode({"token": token, "idEmpresa" : idEmpresa}));
+      if (response.statusCode == 200) {
+        return CategoriasServicoModel.fromJson(json.decode(response.body));
+      }
+    } finally {}
+  }
+
+  unidadesServico() async {
+    try {
+      var response = await httpClient.post('$baseUrl/unidadeServico.php',
+          body: jsonEncode({"token": token}));
+      if (response.statusCode == 200) {
+        return UnidadeServicoModel.fromJson(json.decode(response.body));
+      }
+    } finally {}
+  }
 
   pagar(user, tipo, cartao) async {
     try {

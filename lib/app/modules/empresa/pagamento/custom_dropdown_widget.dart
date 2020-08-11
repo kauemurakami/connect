@@ -1,3 +1,4 @@
+import 'package:connect/app/data/model/categoria_servico_model.dart';
 import 'package:connect/app/data/model/servico_model.dart';
 import 'package:connect/app/modules/empresa/add_servico/add_servico_controller.dart';
 import 'package:flutter/material.dart';
@@ -5,14 +6,14 @@ import 'package:get/get.dart';
 
 class CustomDropDownmButtonWidget extends GetView {
   final AddServicoController controller = Get.find<AddServicoController>();
-  final List<ServicoModel> servicos;
+  final List<CategoriaServicos> servicos;
 
-  CustomDropDownmButtonWidget({@required this.servicos});
+  CustomDropDownmButtonWidget({ this.servicos});
 
-  List<DropdownMenuItem<ServicoModel>> builDropdownMenuItems(
-      List<ServicoModel> servicos) {
-    List<DropdownMenuItem<ServicoModel>> items = List();
-    for (ServicoModel servico in servicos) {
+  List<DropdownMenuItem<CategoriaServicos>> builDropdownMenuItems(
+      List<CategoriaServicos> servicos ) {
+    List<DropdownMenuItem<CategoriaServicos>> items = List();
+    for (CategoriaServicos servico in servicos ) {
       items.add(DropdownMenuItem(
         value: servico,
         child: Text(
@@ -27,9 +28,9 @@ class CustomDropDownmButtonWidget extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return controller.servicos != null ? Container(
       margin: EdgeInsets.all(16),
-        child: DropdownButton<ServicoModel>(
+        child: DropdownButton<CategoriaServicos>(
       value: null,
       hint: Text("Selecione o Serviço"),
       icon: Icon(Icons.arrow_drop_down),
@@ -38,6 +39,6 @@ class CustomDropDownmButtonWidget extends GetView {
       underline: Container(height: 2, color: Theme.of(context).accentColor),
       onChanged: (value) => controller.onChangeDropdownItem(value),
       items: builDropdownMenuItems(this.servicos),
-    ));
+    )) : Center(child:CircularProgressIndicator());
   }
 }

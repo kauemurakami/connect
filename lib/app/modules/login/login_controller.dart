@@ -1,9 +1,12 @@
 import 'package:connect/app/data/model/user_model.dart';
+import 'package:connect/app/data/provider/app_provider.dart';
+import 'package:connect/app/data/repository/servico_repository.dart';
 import 'package:connect/app/data/repository/user_repository.dart';
 import 'package:connect/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:meta/meta.dart';
+import 'package:http/http.dart' as http ;
 
 class LoginController extends GetxController {
   final UserRepository repository;
@@ -27,6 +30,12 @@ class LoginController extends GetxController {
       this.user = data;
       if(this.user.tipo == '2') Get.offAllNamed(Routes.HOME_EMPRESA, arguments: this.user);
     }); 
+  }
+
+  @override
+  void onInit() {
+    //print(ServicoRepository(apiClient: ApiClient(httpClient: http.Client())));
+    super.onInit();
   }
 
   //onChanged
