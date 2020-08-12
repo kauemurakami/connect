@@ -1,7 +1,8 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/servico_repository.dart';
 import 'package:connect/app/modules/empresa/add_servico/add_servico_controller.dart';
-import 'package:connect/app/modules/empresa/pagamento/custom_dropdown_widget.dart';
+import 'package:connect/app/modules/empresa/add_servico/widgets/custom_drop_down_servicos_categoria.dart';
+import 'package:connect/app/modules/empresa/pagamento/widgets/custom_dropdown_widget.dart';
 import 'package:connect/app/theme/app_text_theme.dart';
 import 'package:connect/app/widgets/custom_button_widget.dart';
 import 'package:connect/app/widgets/custom_iconbuttonback_widget.dart';
@@ -45,21 +46,15 @@ class AddServicoPage extends StatelessWidget {
                         children: [
                            controller.servicos.categoriaServicos == null ? Center(child: CircularProgressIndicator(),):
                           CustomDropDownmButtonWidget(
-                              servicos: controller.servicos.categoriaServicos),
-
-                          CustomTextFormField(
-                              text: 'Adicione uma categoria',
-                              max: 15,
-                              onChanged: (value) =>
-                                  controller.onChangedCategoriaServico(value),
-                              onSaved: (value) =>
-                                  controller.onSavedCategoriaServico(value),
-                              validator: (value) => controller.validateCategoriaServico(value)),
+                              servicos: controller.servicos.categoriaServicos,),
+                           controller.servicosCategoria.servicos == null ? Text('Escolha uma categoria') :
+                          CustomDropDownmServicosCategoriaWidget(servicos: controller.servicosCategoria.servicos,),
+                          
                           SizedBox(
                             height: 30,
                           ),
                           CustomButtonWidget(
-                            text: 'Add Categoria de Serviço',
+                            text: 'Adicionar Serviço',
                             callback: () {},
                           ),
                           SizedBox(height: 30),
@@ -67,7 +62,7 @@ class AddServicoPage extends StatelessWidget {
                           Row(
                             children: [
                               Expanded(
-                                  child: CustomTextFormField(text: 'Data')),
+                                  child: CustomTextFormField(text: 'Data', type: TextInputType.datetime, max: 8,)),
                               SizedBox(
                                 width: 10,
                               ),
@@ -76,13 +71,15 @@ class AddServicoPage extends StatelessWidget {
                                       text: 'Certf. Obrigatórios'))
                             ],
                           ),
-                          CustomTextFormField(text: 'Cidade'),
+                          CustomTextFormField(text: 'Cidade', type: TextInputType.text,),
                           SizedBox(
                             height: 30,
                           ),
                           CustomButtonWidget(
                             text: 'Salvar',
-                            callback: () {},
+                            callback: () {
+                              controller.addServico();
+                            },
                           ),
                         ],
                       ),

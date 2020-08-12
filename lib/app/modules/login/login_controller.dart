@@ -28,7 +28,7 @@ class LoginController extends GetxController {
   login() {
     repository.login(this.user).then((data){
       this.user = data;
-      if(this.user.tipo == '2') Get.offAllNamed(Routes.HOME_EMPRESA, arguments: this.user);
+     Get.offAllNamed(Routes.HOME_EMPRESA, arguments: this.user);
     }); 
   }
 

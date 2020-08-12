@@ -1,7 +1,6 @@
 import 'package:connect/app/data/provider/app_provider.dart';
 import 'package:connect/app/data/repository/empresa_repository.dart';
 import 'package:connect/app/modules/empresa/agendamento/agendamento_controller.dart';
-import 'package:connect/app/modules/empresa/pagamento/custom_dropdown_widget.dart';
 import 'package:connect/app/theme/app_text_theme.dart';
 import 'package:connect/app/widgets/custom_button_widget.dart';
 import 'package:connect/app/widgets/custom_iconbuttonback_widget.dart';

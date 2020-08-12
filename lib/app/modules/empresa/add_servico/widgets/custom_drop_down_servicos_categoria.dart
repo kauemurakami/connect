@@ -1,19 +1,19 @@
-import 'package:connect/app/data/model/categoria_servico_model.dart';
-import 'package:connect/app/data/model/servico_model.dart';
+import 'package:connect/app/data/model/servicos_categoria.dart';
 import 'package:connect/app/modules/empresa/add_servico/add_servico_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CustomDropDownmButtonWidget extends GetView {
+class CustomDropDownmServicosCategoriaWidget extends GetView {
   final AddServicoController controller = Get.find<AddServicoController>();
-  final List<CategoriaServicos> servicos;
+  
+  final List<Servicos> servicos;
 
-  CustomDropDownmButtonWidget({ this.servicos});
+  CustomDropDownmServicosCategoriaWidget({ this.servicos});
 
-  List<DropdownMenuItem<CategoriaServicos>> builDropdownMenuItems(
-      List<CategoriaServicos> servicos ) {
-    List<DropdownMenuItem<CategoriaServicos>> items = List();
-    for (CategoriaServicos servico in servicos ) {
+  List<DropdownMenuItem<Servicos>> builDropdownMenuItems(
+      List<Servicos> servicos ) {
+    List<DropdownMenuItem<Servicos>> items = List();
+    for (Servicos servico in servicos ) {
       items.add(DropdownMenuItem(
         value: servico,
         child: Text(
@@ -30,14 +30,14 @@ class CustomDropDownmButtonWidget extends GetView {
   Widget build(BuildContext context) {
     return controller.servicos != null ? Container(
       margin: EdgeInsets.all(16),
-        child: DropdownButton<CategoriaServicos>(
+        child: DropdownButton<Servicos>(
       value: null,
-      hint: Text("Selecione o Serviço"),
+      hint: Text("Selecione um Serviço", style: TextStyle(fontSize: 20.0),),
       icon: Icon(Icons.arrow_drop_down),
       iconSize: 20,
       elevation: 16,
       underline: Container(height: 2, color: Theme.of(context).accentColor),
-      onChanged: (value) => controller.onChangeDropdownItem(value),
+      onChanged: (value) => controller.onChangeDropdownItemServico(value),
       items: builDropdownMenuItems(this.servicos),
     )) : Center(child:CircularProgressIndicator());
   }
