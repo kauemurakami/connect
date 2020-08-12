@@ -15,6 +15,8 @@ ServicoRepository({@required this.apiClient}) : assert(apiClient != null);
     return apiClient.categoriaServico(idEmpresa);
   }
   
+  getServicos(idEmpresa, idCategoriaServico) => apiClient.getServicos(idCategoriaServico, idEmpresa);
+
   getPrestadorServicos(prestador){
 
   }
