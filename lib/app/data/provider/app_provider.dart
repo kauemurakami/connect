@@ -18,9 +18,44 @@ class ApiClient {
   getServicos(idCategoriaServico, idEmpresa) async {
     try {
       var response = await httpClient.post('$baseUrl/servicos.php',
-          body: jsonEncode({"token": token, "idEmpresa" : idEmpresa, "idCategoriaServico": idCategoriaServico}));
+          body: jsonEncode({
+            "token": token,
+            "idEmpresa": idEmpresa,
+            "idCategoriaServico": idCategoriaServico
+          }));
       if (response.statusCode == 200) {
         return ServicosCategoria.fromJson(json.decode(response.body));
+      }
+    } finally {}
+  }
+
+  addDemandaServico(demanda, servicos) async {
+    try {
+      print(servicos);
+      var response = await httpClient.post('$baseUrl/cadastro-servico.php',
+          body: jsonEncode({
+            "token": token,
+            "idEmpresa": demanda.tipoEmpresa,
+            "dataInicio": demanda.dataInicio,
+            "certificadoObrigatorio": demanda.certificadoObrigatorio,
+            "cidade": demanda.cidade,
+            "estado": "Minas Gerais",
+            "obsServico": "observacao",
+            "servicos": demanda.servicos
+          }));
+      if (response.statusCode == 200) {
+        print(response.body);
+        print(jsonEncode({
+            "token": token,
+            "idEmpresa": demanda.tipoEmpresa,
+            "dataInicio": demanda.dataInicio,
+            "certificadoObrigatorio": demanda.certificadoObrigatorio,
+            "cidade": demanda.cidade,
+            "estado": "Minas Gerais",
+            "obsServico": "observacao",
+            "servicos": [servicos]
+          }));
+        return true;
       }
     } finally {}
   }
@@ -28,7 +63,7 @@ class ApiClient {
   categoriaServico(idEmpresa) async {
     try {
       var response = await httpClient.post('$baseUrl/categoria-servico.php',
-          body: jsonEncode({"token": token, "idEmpresa" : idEmpresa}));
+          body: jsonEncode({"token": token, "idEmpresa": idEmpresa}));
       if (response.statusCode == 200) {
         return CategoriasServicoModel.fromJson(json.decode(response.body));
       }

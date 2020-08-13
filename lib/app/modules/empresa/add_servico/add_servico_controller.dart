@@ -1,4 +1,5 @@
 import 'package:connect/app/data/model/categoria_servico_model.dart';
+import 'package:connect/app/data/model/demanda_servico_model.dart';
 import 'package:connect/app/data/model/servico_model.dart';
 import 'package:connect/app/data/model/servicos_categoria.dart';
 import 'package:connect/app/data/repository/servico_repository.dart';
@@ -33,30 +34,50 @@ class AddServicoController extends GetxController {
 
   final _selectedCategoriaServico = CategoriaServicos().obs;
   get selectedCategoriaServico => this._selectedCategoriaServico.value;
-  set selectedCategoriaServico(value) => this._selectedCategoriaServico.value = value;
+  set selectedCategoriaServico(value) =>
+      this._selectedCategoriaServico.value = value;
 
   onChangeDropdownItem(value) {
     this.selectedCategoriaServico = value;
     getServicosViaCategoria();
   }
 
-  
   final _selectedServico = Servicos().obs;
   get selectedServico => this._selectedServico.value;
   set selectedServico(value) => this._selectedServico.value = value;
-  
+
   onChangeDropdownItemServico(value) {
     this.selectedServico = value;
   }
-  
 
-  
+  onSavedCert(value) => this.demanda.idEmpresa = int.parse(value);
+  onSavedData(value) => this.demanda.dataInicio = value ;
+  onSavedCidade(value) => this.demanda.cidade = int.parse(value);
+
+  onChangedCert(value) => this.demanda.certificadoObrigatorio = value;
+  onChangedCidade(value) => this.demanda.cidade = value;
+  onChangedData(value) => this.demanda.dataInicio = value;
+
+  validateCert(value) => value.length < 1 ? 'Insira 1 ou 0' : null;
+  validateData(value) => value.length < 8 ? 'Insira uma data válida' : null;
+  validateCidade(value) => value.length < 3 ? 'Insira uma cidade válida' : null;
+
   final _servicosAdicionados = List<Servicos>().obs;
   get servicosAdicionados => this._servicosAdicionados.value;
   set servicosAdicionados(value) => this._servicosAdicionados.value = value;
-  
-  addServico(){
+
+  addServico() {
     this.servicosAdicionados.add(selectedServico);
+    this.demanda.servicos.add(this.selectedServico);
+  }
+
+  final _demanda = DemandaServico().obs;
+  get demanda => this._demanda.value;
+  set demanda(value) => this._demanda.value = value;
+
+  addDemanda(){
+    this.demanda.tipoEmpresa = int.parse(Get.find<EmpresaController>().user.tipo);
+    print(repository.addDemandaServico(this.demanda, this.servicosAdicionados));
   }
 
   final _servicosCategoria = ServicosCategoria().obs;
@@ -65,8 +86,8 @@ class AddServicoController extends GetxController {
 
   getServicosViaCategoria() {
     repository
-        .getServicos(
-            Get.find<EmpresaController>().user.id, this.selectedCategoriaServico.id)
+        .getServicos(Get.find<EmpresaController>().user.id,
+            this.selectedCategoriaServico.id)
         .then((data) => this.servicosCategoria = data);
   }
 }

@@ -24,71 +24,98 @@ class AddServicoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          body: SafeArea(
-            child: SingleChildScrollView(
-                child: Container(
-              width: Get.width,
-              child: Column(
+      body: SafeArea(
+        child: SingleChildScrollView(
+            child: Container(
+          width: Get.width,
+          child: Column(
+            children: [
+              Row(
                 children: [
-                  Row(
-                    children: [
-                      IconButtonBackWidget(),
-                      Text('Cadastrar Demanda Serviço', style: subtitulo),
-                    ],
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(16),
-                    child: Obx(() => 
-                    Form(
-                      key: _key,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                           controller.servicos.categoriaServicos == null ? Center(child: CircularProgressIndicator(),):
-                          CustomDropDownmButtonWidget(
-                              servicos: controller.servicos.categoriaServicos,),
-                           controller.servicosCategoria.servicos == null ? Text('Escolha uma categoria') :
-                          CustomDropDownmServicosCategoriaWidget(servicos: controller.servicosCategoria.servicos,),
-                          
-                          SizedBox(
-                            height: 30,
-                          ),
-                          CustomButtonWidget(
-                            text: 'Adicionar Serviço',
-                            callback: () {},
-                          ),
-                          SizedBox(height: 30),
-                          CustomTextFormField(text: 'Documentação necessária'),
-                          Row(
-                            children: [
-                              Expanded(
-                                  child: CustomTextFormField(text: 'Data', type: TextInputType.datetime, max: 8,)),
-                              SizedBox(
-                                width: 10,
+                  IconButtonBackWidget(),
+                  Text('Cadastrar Demanda Serviço', style: subtitulo),
+                ],
+              ),
+              Container(
+                margin: EdgeInsets.all(16),
+                child: Obx(
+                  () => Form(
+                    key: _key,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        controller.servicos.categoriaServicos == null
+                            ? Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : CustomDropDownmButtonWidget(
+                                servicos: controller.servicos.categoriaServicos,
                               ),
-                              Expanded(
-                                  child: CustomTextFormField(
-                                      text: 'Certf. Obrigatórios'))
-                            ],
-                          ),
-                          CustomTextFormField(text: 'Cidade', type: TextInputType.text,),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          CustomButtonWidget(
-                            text: 'Salvar',
-                            callback: () {
-                              controller.addServico();
-                            },
-                          ),
-                        ],
-                      ),
+                        controller.servicosCategoria.servicos == null
+                            ? Text('Escolha uma categoria')
+                            : CustomDropDownmServicosCategoriaWidget(
+                                servicos: controller.servicosCategoria.servicos,
+                              ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        CustomButtonWidget(
+                          text: 'Adicionar Serviço',
+                          callback: () => controller.addServico(),
+                        ),
+                        SizedBox(height: 30),
+                        CustomTextFormField(
+                          text: 'Documentação necessária',
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: CustomTextFormField(
+                              text: 'Data',
+                              type: TextInputType.datetime,
+                              max: 8,
+                              onChanged: (value) =>
+                                  controller.onChangedData(value),
+                              validator: (value) =>
+                                  controller.validateData(value),
+                              onSaved: (value) => controller.onSavedData(value),
+                            )),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                                child: CustomTextFormField(type: TextInputType.number,
+                              text: 'Certf. Obrigatórios',
+                              onChanged: (value) =>
+                                  controller.onChangedCert(value),
+                              validator: (value) =>
+                                  controller.validateCert(value),
+                              onSaved: (value) => controller.onSavedCert(value),
+                            ))
+                          ],
+                        ),
+                        CustomTextFormField(
+                          text: 'Cidade',
+                          type: TextInputType.text,
+                          onChanged: (value) =>
+                              controller.onChangedCidade(value),
+                          validator: (value) =>
+                              controller.validateCidade(value),
+                          onSaved: (value) => controller.onSavedCidade(value),
+                        ),
+                        SizedBox(
+                          height: 30,
+                        ),
+                        CustomButtonWidget(text: 'Salvar', callback: () => controller.addDemanda()),
+                      ],
                     ),
                   ),
-                  )],
-              ),
-            )),
+                ),
+              )
+            ],
           ),
-        );
+        )),
+      ),
+    );
   }
 }
